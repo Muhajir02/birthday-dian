@@ -10,7 +10,7 @@ function bukaGerbang() {
         document.getElementById('errorMsg').classList.add('hidden');
         
         const musik = document.getElementById('bgMusic');
-        musik.load(); // Memaksa refresh buffer audio lokal
+        musik.load(); 
         musik.volume = 0.6; 
         
         let playPromise = musik.play();
@@ -18,8 +18,7 @@ function bukaGerbang() {
             playPromise.then(_ => {
                 console.log("Audio berhasil berputar.");
             }).catch(error => {
-                console.log("Autoplay ditahan oleh browser, mengaktifkan pemicu darurat.");
-                // Fallback darurat: Jika diblokir, mainkan saat layar pertama kali disentuh
+                console.log("Autoplay ditahan browser, mengaktifkan pemicu klik darurat.");
                 document.body.addEventListener('click', () => { musik.play(); }, { once: true });
             });
         }
@@ -76,7 +75,7 @@ function mulaiCountdown() {
     }, 1000);
 }
 
-// --- 4. DATA ALBUM FOTO DENGAN KALIMAT ROMANTIS ---
+// --- 4. DATA ARRAY ALBUM FOTO (COCOK DENGAN ANGKA DI HTML) ---
 const daftarFoto = [
     { src: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800', caption: 'Senyummu itu seperti semesta yang berkonspirasi untuk membuatku bahagia. 💛' },
     { src: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800', caption: 'Setiap sudut di istana memori ini penuh dengan cerita indah yang kita ukir bersama. ✨' },
@@ -106,22 +105,20 @@ function tampilkanFotoModal() {
     ledakanCinta();
 }
 
-// Navigasi Geser Mundur (Ke Foto Sebelumnya)
 function fotoSebelumnya() {
     if (indeksFotoSekarang > 0) {
         indeksFotoSekarang--;
     } else {
-        indeksFotoSekarang = daftarFoto.length - 1; // Putar kembali ke foto paling akhir
+        indeksFotoSekarang = daftarFoto.length - 1; 
     }
     tampilkanFotoModal();
 }
 
-// Navigasi Geser Maju (Ke Foto Selanjutnya)
 function fotoSelanjutnya() {
     if (indeksFotoSekarang < daftarFoto.length - 1) {
         indeksFotoSekarang++;
     } else {
-        indeksFotoSekarang = 0; // Putar kembali ke foto pertama
+        indeksFotoSekarang = 0; 
     }
     tampilkanFotoModal();
 }
