@@ -142,7 +142,17 @@ input[type="password"] {
 .modal-content h2 { color: #E91E63; font-size: 3.5rem; margin-top: 25px; text-shadow: 0 2px 5px rgba(233, 30, 99, 0.2); }
 .ledakan-cinta { position: absolute; font-size: 35px; pointer-events: none; animation: terbang 1.2s ease-out forwards; }
 
+/* Animasi Hujan Emas Confetti */
+.confetti-item {
+    position: absolute; color: #FFDE4D; font-size: 20px; pointer-events: none; z-index: 0; opacity: 0.6;
+    animation: hujan-emas linear forwards;
+}
+
 /* Keyframes */
+@keyframes hujan-emas {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+}
 @keyframes terbang { 0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(20deg); opacity: 0; } }
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
