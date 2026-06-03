@@ -4,50 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Dian Sri Mentari 💛</title>
+    <!-- Pastikan file CSS bernama persis style.css dan ada di folder yang sama -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
+    <!-- Font Mewah & Romantis -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Animasi Background -->
+    <div class="bg-bubbles">
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    </div>
+
+    <!-- Efek Hati Berjatuhan -->
     <div class="heart-container" id="heartContainer"></div>
 
-    <div class="container">
+    <!-- Konten Utama (Glassmorphism) -->
+    <div class="glass-container">
+        <!-- Musik Kontrol -->
         <div class="music-box">
-            <button id="musicBtn" onclick="toggleMusic()">🎵 Putar Musik</button>
+            <button id="musicBtn" onclick="toggleMusic()">🎵 Putar Lagu Kita</button>
             <audio id="bgMusic" loop>
                 <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
             </audio>
         </div>
 
+        <!-- Header Tema Nailong -->
         <header class="header-section">
-            <img src="https://placehold.co/150x150/FFD700/FFF?text=Nailong+Cute" alt="Nailong" class="nailong-img">
+            <!-- Ganti src dengan link atau file foto Nailong favoritnya -->
+            <div class="image-frame glow">
+                <img src="https://i.pinimg.com/originals/81/45/be/8145be8f504ca4d2e7ff2ebbeccdd651.jpg" alt="Nailong Cute" class="nailong-img">
+            </div>
             <h1>Happy Birthday, Dian! ✨</h1>
-            <p class="date">20 Juni 2026</p>
+            <div class="badge">20 Juni 2026</div>
         </header>
 
+        <!-- Galeri Foto Polaroid -->
         <section class="gallery-section">
-            <h3>Our Precious Memories 📸</h3>
+            <h3>Memori Indah Kita 📸</h3>
             <div class="gallery">
-                <div class="photo-card">
-                    <img src="https://placehold.co/300x300/FFDE4D/000?text=Foto+Dian+1" alt="Foto Dian 1">
-                    <p>Senyum favoritku... 🥰</p>
+                <div class="polaroid">
+                    <!-- Ganti src dengan foto Dian -->
+                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=400&auto=format&fit=crop" alt="Foto Dian">
+                    <p>Si cantik yang paling aku sayang 🥰</p>
                 </div>
-                <div class="photo-card">
-                    <img src="https://placehold.co/300x300/FFDE4D/000?text=Foto+Berdua" alt="Foto Berdua">
-                    <p>Momen bareng kamu selalu berharga ✨</p>
+                <div class="polaroid">
+                    <!-- Ganti src dengan foto kalian berdua -->
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=400&auto=format&fit=crop" alt="Foto Berdua">
+                    <p>Selamanya sama kamu ya! 💛</p>
                 </div>
             </div>
         </section>
 
+        <!-- Surat Romantis -->
         <section class="letter-section">
-            <button class="open-letter-btn" onclick="openLetter()">Buka Surat Cinta ✉️</button>
+            <button class="open-letter-btn" onclick="openLetter()">Buka Surat Cinta 💌</button>
             <div id="loveLetter" class="letter-content hidden">
-                <h2>Untuk Dian Sri Mentari-ku,</h2>
-                <p>Selamat ulang tahun yang ke-21, Sayang! 💛</p>
-                <p>Di hari yang spesial ini, aku cuma mau bilang terima kasih karena sudah hadir dan membawa banyak warna cerah di hidupku, secerah lucunya Nailong favoritmu. Kamu adalah alasan di balik senyumku setiap hari.</p>
-                <p>Semoga di usia yang baru ini, kamu selalu diberikan kebahagiaan, kesehatan, dan semua impianmu satu per satu terwujud. Aku berharap bisa terus ada di sampingmu, melewati setiap hari ulang tahunmu berikutnya.</p>
-                <p>Tetaplah jadi Dian yang manis, ceria, dan menggemaskan ya! Aku sayang kamu hari ini, besok, dan selamanya. 💍✨</p>
-                <p class="signature">Dengan seluruh cintaku,<br><strong>Muhajir</strong></p>
+                <h2>Teruntuk Kesayanganku, Dian Sri Mentari...</h2>
+                <p>Selamat ulang tahun, Sayang! 💛🎉</p>
+                <p>Di hari kamu bertambah usia ini, aku mau ngucapin makasih banyak karena kamu udah jadi sosok yang luar biasa buat aku. Kamu itu ibarat warna kuning cerah di hari-hariku—persis kayak lucunya Nailong kesukaanmu yang selalu bikin gemas.</p>
+                <p>Semoga di umur yang baru ini, kamu makin bahagia, rezekinya lancar, selalu sehat, dan semua yang kamu semogakan bisa segera terwujud. Jangan pernah berhenti jadi Dian yang ceria dan penyayang ya.</p>
+                <p>Aku akan selalu berusaha buat jadi alasan kamu tersenyum setiap harinya. I love you to the moon, the stars, and back! ✨💍</p>
+                <p class="signature">Dari pria yang sangat mencintaimu,<br><strong>Muhajir</strong></p>
             </div>
         </section>
     </div>
