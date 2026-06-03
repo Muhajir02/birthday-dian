@@ -16,7 +16,7 @@ function bukaGerbang() {
         let playPromise = musik.play();
         if (playPromise !== undefined) {
             playPromise.then(_ => {
-                console.log("Everything You Are berhasil diputar!");
+                console.log("Audio berhasil diputar.");
             }).catch(error => {
                 console.log("Autoplay ditahan oleh browser.");
             });
@@ -31,6 +31,7 @@ function bukaGerbang() {
             const istana = document.getElementById('mainPalace');
             istana.classList.remove('hidden');
             
+            // Memicu rendering CSS
             void istana.offsetWidth; 
             istana.classList.add('visible');
             
@@ -39,6 +40,7 @@ function bukaGerbang() {
         }, 2000);
         
     } else {
+        // Tampilkan pesan error dan efek getar
         const errorText = document.getElementById('errorMsg');
         errorText.classList.remove('hidden');
         const inputSandi = document.getElementById('password');
@@ -160,16 +162,12 @@ function buatConfetti() {
     const istana = document.getElementById('mainPalace');
     setInterval(() => {
         const conf = document.createElement('div');
+        conf.classList.add('confetti-item');
         conf.innerHTML = '✨';
-        conf.style.position = 'absolute';
-        conf.style.color = '#FFDE4D';
         conf.style.left = Math.random() * 100 + 'vw';
         conf.style.top = '-50px';
         conf.style.fontSize = Math.random() * 15 + 10 + 'px';
-        conf.style.animation = `terbang ${Math.random() * 4 + 3}s linear forwards`;
-        conf.style.opacity = '0.6';
-        conf.style.zIndex = '0';
-        conf.style.pointerEvents = 'none';
+        conf.style.animationDuration = Math.random() * 4 + 3 + 's';
         
         istana.appendChild(conf);
         
