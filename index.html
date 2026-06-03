@@ -1,57 +1,57 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Dian 💖</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Dian Sri Mentari 💛</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-  <h1>💖 Special For You 💖</h1>
-  <button onclick="enterSite()">Masuk</button>
-</div>
+    <div class="heart-container" id="heartContainer"></div>
 
-<!-- PASSWORD -->
-<div id="lock" class="hidden">
-  <h2>Masukkan Password 💌</h2>
-  <input type="password" id="pass" placeholder="Hint: tanggal spesial 😉">
-  <br><br>
-  <button onclick="checkPass()">Buka</button>
-</div>
+    <div class="container">
+        <div class="music-box">
+            <button id="musicBtn" onclick="toggleMusic()">🎵 Putar Musik</button>
+            <audio id="bgMusic" loop>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            </audio>
+        </div>
 
-<!-- MAIN -->
-<div id="main" class="hidden">
+        <header class="header-section">
+            <img src="https://placehold.co/150x150/FFD700/FFF?text=Nailong+Cute" alt="Nailong" class="nailong-img">
+            <h1>Happy Birthday, Dian! ✨</h1>
+            <p class="date">20 Juni 2026</p>
+        </header>
 
-<audio id="music" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8f3a4c1a5.mp3">
-</audio>
+        <section class="gallery-section">
+            <h3>Our Precious Memories 📸</h3>
+            <div class="gallery">
+                <div class="photo-card">
+                    <img src="https://placehold.co/300x300/FFDE4D/000?text=Foto+Dian+1" alt="Foto Dian 1">
+                    <p>Senyum favoritku... 🥰</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://placehold.co/300x300/FFDE4D/000?text=Foto+Berdua" alt="Foto Berdua">
+                    <p>Momen bareng kamu selalu berharga ✨</p>
+                </div>
+            </div>
+        </section>
 
-<div class="hearts"></div>
+        <section class="letter-section">
+            <button class="open-letter-btn" onclick="openLetter()">Buka Surat Cinta ✉️</button>
+            <div id="loveLetter" class="letter-content hidden">
+                <h2>Untuk Dian Sri Mentari-ku,</h2>
+                <p>Selamat ulang tahun yang ke-21, Sayang! 💛</p>
+                <p>Di hari yang spesial ini, aku cuma mau bilang terima kasih karena sudah hadir dan membawa banyak warna cerah di hidupku, secerah lucunya Nailong favoritmu. Kamu adalah alasan di balik senyumku setiap hari.</p>
+                <p>Semoga di usia yang baru ini, kamu selalu diberikan kebahagiaan, kesehatan, dan semua impianmu satu per satu terwujud. Aku berharap bisa terus ada di sampingmu, melewati setiap hari ulang tahunmu berikutnya.</p>
+                <p>Tetaplah jadi Dian yang manis, ceria, dan menggemaskan ya! Aku sayang kamu hari ini, besok, dan selamanya. 💍✨</p>
+                <p class="signature">Dengan seluruh cintaku,<br><strong>Muhajir</strong></p>
+            </div>
+        </section>
+    </div>
 
-<h1>🎂 Happy Birthday 🎂</h1>
-<h2>Dian Sri Mentari 💖</h2>
-
-<p id="countdown"></p>
-
-<img src="https://i.pinimg.com/originals/9f/5c/6a/9f5c6a1f9c1e7c9c5e4d9c9c6a6f6f6f.gif" class="nailong">
-
-<!-- SLIDESHOW -->
-<div class="slider">
-  <img id="slide" src="">
-</div>
-
-<button onclick="startLove()">💌 Buka Pesan Aku</button>
-
-<p id="text"></p>
-
-<canvas id="confetti"></canvas>
-
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
