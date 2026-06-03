@@ -3,71 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Dian Sri Mentari 💛</title>
-    <!-- Pastikan file CSS bernama persis style.css dan ada di folder yang sama -->
+    <title>Istana Megah Untuk Dian 💛</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font Mewah & Romantis -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Megah & Estetik -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,600&family=Parisienne&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Animasi Background -->
-    <div class="bg-bubbles">
-        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <!-- MUSIK ROMANTIS (Pastikan nama file di folder sama dengan src di bawah) -->
+    <audio id="bgMusic" loop>
+        <source src="everything-you-are.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- LAYER 1: GERBANG ISTANA NAILONG -->
+    <div id="palaceGate" class="gate-wrapper">
+        <div class="gate-left"></div>
+        <div class="gate-right"></div>
+        
+        <div class="login-card">
+            <img src="https://media1.tenor.com/m/9n9G0t0Oq9AAAAAd/nailong-cute.gif" alt="Nailong Kunci" class="royal-nailong">
+            <h1 class="palace-title">Istana Memori</h1>
+            <p class="subtitle">Kunci gerbang ini dengan namamu di hatiku.</p>
+            
+            <input type="password" id="password" placeholder="Masukkan Sandi Rahasia...">
+            <button onclick="bukaGerbang()" class="btn-royal">Buka Istana ✨</button>
+            <p id="errorMsg" class="error hidden">Itu bukan sandi kita, Sayang! Coba lagi.</p>
+        </div>
     </div>
 
-    <!-- Efek Hati Berjatuhan -->
-    <div class="heart-container" id="heartContainer"></div>
+    <!-- LAYER 2: RUANG UTAMA ISTANA -->
+    <div id="mainPalace" class="main-palace hidden">
+        
+        <!-- Hiasan Nailong Terbang di Latar Belakang -->
+        <img src="https://media.tenor.com/tHqgU_vAEEwAAAAi/nailong-cute.gif" class="flying-nailong" style="top: 10%; left: 5%; animation-duration: 4s;">
+        <img src="https://media1.tenor.com/m/O6rE5G9a5b0AAAAd/nailong-love.gif" class="flying-nailong" style="top: 20%; right: 5%; animation-duration: 5s;">
+        
+        <div class="palace-content">
+            <!-- Header Megah -->
+            <div class="header-section">
+                <h2 class="parisienne accent-text">Selamat Ulang Tahun yang ke-21,</h2>
+                <h1 class="playfair giant-title">Dian Sri Mentari</h1>
+                <div class="royal-divider">
+                    <span>✨</span>💛<span>✨</span>
+                </div>
+            </div>
 
-    <!-- Konten Utama (Glassmorphism) -->
-    <div class="glass-container">
-        <!-- Musik Kontrol -->
-        <div class="music-box">
-            <button id="musicBtn" onclick="toggleMusic()">🎵 Putar Lagu Kita</button>
-            <audio id="bgMusic" loop>
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-            </audio>
+            <!-- Jam Hitung Mundur -->
+            <div class="countdown-palace">
+                <div class="time-box"><span id="days">00</span><p>Hari</p></div>
+                <div class="time-box"><span id="hours">00</span><p>Jam</p></div>
+                <div class="time-box"><span id="mins">00</span><p>Menit</p></div>
+                <div class="time-box"><span id="secs">00</span><p>Detik</p></div>
+            </div>
+
+            <!-- Galeri Lukisan Istana -->
+            <h3 class="playfair section-title">Koleksi Senyum Terindahmu</h3>
+            <div class="gallery-palace">
+                <div class="frame-royal" onclick="bukaFoto('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800', 'Kamu adalah ratu di hatiku 🥰')">
+                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400" alt="Foto Dian 1">
+                    <div class="frame-overlay">Sentuh Aku ✨</div>
+                </div>
+                <div class="frame-royal" onclick="bukaFoto('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800', 'Bersamamu adalah keajaiban 💛')">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400" alt="Foto Berdua">
+                    <div class="frame-overlay">Sentuh Aku ✨</div>
+                </div>
+                <div class="frame-royal" onclick="bukaFoto('https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=800', 'Selamanya kamu milikku 💍')">
+                    <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=400" alt="Foto Memori">
+                    <div class="frame-overlay">Sentuh Aku ✨</div>
+                </div>
+            </div>
+
+            <!-- Bagian Surat Cinta Gulung -->
+            <div class="scroll-section">
+                <button id="btnBacaSurat" class="btn-royal-large" onclick="bacaTitah()">Baca Surat Spesialku 💌</button>
+                
+                <div id="royalScroll" class="scroll-container hidden">
+                    <div class="scroll-paper">
+                        <img src="https://media1.tenor.com/m/O6rE5G9a5b0AAAAd/nailong-love.gif" alt="Nailong Surat" class="nailong-seal">
+                        <h2 class="parisienne accent-text" style="font-size:3.5rem; margin-bottom: 20px;">Teruntuk Permaisuriku,</h2>
+                        <p id="typedText" class="surat-text"></p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Header Tema Nailong -->
-        <header class="header-section">
-            <!-- Ganti src dengan link atau file foto Nailong favoritnya -->
-            <div class="image-frame glow">
-                <img src="https://i.pinimg.com/originals/81/45/be/8145be8f504ca4d2e7ff2ebbeccdd651.jpg" alt="Nailong Cute" class="nailong-img">
-            </div>
-            <h1>Happy Birthday, Dian! ✨</h1>
-            <div class="badge">20 Juni 2026</div>
-        </header>
-
-        <!-- Galeri Foto Polaroid -->
-        <section class="gallery-section">
-            <h3>Memori Indah Kita 📸</h3>
-            <div class="gallery">
-                <div class="polaroid">
-                    <!-- Ganti src dengan foto Dian -->
-                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=400&auto=format&fit=crop" alt="Foto Dian">
-                    <p>Si cantik yang paling aku sayang 🥰</p>
-                </div>
-                <div class="polaroid">
-                    <!-- Ganti src dengan foto kalian berdua -->
-                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=400&auto=format&fit=crop" alt="Foto Berdua">
-                    <p>Selamanya sama kamu ya! 💛</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Surat Romantis -->
-        <section class="letter-section">
-            <button class="open-letter-btn" onclick="openLetter()">Buka Surat Cinta 💌</button>
-            <div id="loveLetter" class="letter-content hidden">
-                <h2>Teruntuk Kesayanganku, Dian Sri Mentari...</h2>
-                <p>Selamat ulang tahun, Sayang! 💛🎉</p>
-                <p>Di hari kamu bertambah usia ini, aku mau ngucapin makasih banyak karena kamu udah jadi sosok yang luar biasa buat aku. Kamu itu ibarat warna kuning cerah di hari-hariku—persis kayak lucunya Nailong kesukaanmu yang selalu bikin gemas.</p>
-                <p>Semoga di umur yang baru ini, kamu makin bahagia, rezekinya lancar, selalu sehat, dan semua yang kamu semogakan bisa segera terwujud. Jangan pernah berhenti jadi Dian yang ceria dan penyayang ya.</p>
-                <p>Aku akan selalu berusaha buat jadi alasan kamu tersenyum setiap harinya. I love you to the moon, the stars, and back! ✨💍</p>
-                <p class="signature">Dari pria yang sangat mencintaimu,<br><strong>Muhajir</strong></p>
-            </div>
-        </section>
+    <!-- MODAL FOTO ANIMASI HATI -->
+    <div id="photoModal" class="photo-modal">
+        <span class="close-modal" onclick="tutupFoto()">✖</span>
+        <div class="modal-content">
+            <img id="modalImg" src="">
+            <h2 id="modalCaption" class="parisienne"></h2>
+            <div id="heartExplosion"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>
