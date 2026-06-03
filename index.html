@@ -5,23 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Istana Megah Untuk Dian 💛</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font Megah & Estetik -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,600&family=Parisienne&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- MUSIK ROMANTIS (Pastikan file everything-you-are.mp3 sudah di-upload ke GitHub) -->
-   <audio id="bgMusic" loop preload="auto">
-    <source src="everything-you-are.mp3" type="audio/mpeg">
-</audio>
+    <audio id="bgMusic" loop>
+        <source src="everything-you-are.mp3" type="audio/mpeg">
+    </audio>
 
-    <!-- LAYER 1: GERBANG ISTANA NAILONG -->
     <div id="palaceGate" class="gate-wrapper">
         <div class="gate-left"></div>
         <div class="gate-right"></div>
         
         <div class="login-card">
-            <img src="https://media.tenor.com/9n9G0t0Oq9AAAAAj/nailong-cute.gif" alt="Nailong Kunci" class="royal-nailong">
+            <img src="https://media1.tenor.com/m/9n9G0t0Oq9AAAAAd/nailong-cute.gif" alt="Nailong Kunci" class="royal-nailong">
             <h1 class="palace-title">Istana Memori</h1>
             <p class="subtitle">Kunci gerbang ini dengan namamu di hatiku.</p>
             
@@ -31,15 +28,12 @@
         </div>
     </div>
 
-    <!-- LAYER 2: RUANG UTAMA ISTANA -->
     <div id="mainPalace" class="main-palace hidden">
         
-        <!-- Hiasan Nailong Terbang di Latar Belakang -->
         <img src="https://media.tenor.com/tHqgU_vAEEwAAAAi/nailong-cute.gif" class="flying-nailong" style="top: 10%; left: 5%; animation-duration: 4s;">
         <img src="https://media1.tenor.com/m/O6rE5G9a5b0AAAAd/nailong-love.gif" class="flying-nailong" style="top: 20%; right: 5%; animation-duration: 5s;">
         
         <div class="palace-content">
-            <!-- Header Megah -->
             <div class="header-section">
                 <h2 class="parisienne accent-text">Selamat Ulang Tahun yang ke-21,</h2>
                 <h1 class="playfair giant-title">Dian Sri Mentari</h1>
@@ -48,7 +42,6 @@
                 </div>
             </div>
 
-            <!-- Jam Hitung Mundur -->
             <div class="countdown-palace">
                 <div class="time-box"><span id="days">00</span><p>Hari</p></div>
                 <div class="time-box"><span id="hours">00</span><p>Jam</p></div>
@@ -56,24 +49,42 @@
                 <div class="time-box"><span id="secs">00</span><p>Detik</p></div>
             </div>
 
-            <!-- Galeri Lukisan Istana -->
             <h3 class="playfair section-title">Koleksi Senyum Terindahmu</h3>
             <div class="gallery-palace">
-                <div class="frame-royal" onclick="bukaFoto('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800', 'Kamu adalah ratu di hatiku 🥰')">
-                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400" alt="Foto Dian 1">
+                <div class="frame-royal" onclick="bukaFoto(0)">
+                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400" alt="Foto 1">
                     <div class="frame-overlay">Sentuh Aku ✨</div>
                 </div>
-                <div class="frame-royal" onclick="bukaFoto('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800', 'Bersamamu adalah keajaiban 💛')">
-                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400" alt="Foto Berdua">
+                <div class="frame-royal" onclick="bukaFoto(1)">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400" alt="Foto 2">
                     <div class="frame-overlay">Sentuh Aku ✨</div>
                 </div>
-                <div class="frame-royal" onclick="bukaFoto('https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=800', 'Selamanya kamu milikku 💍')">
-                    <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=400" alt="Foto Memori">
+                <div class="frame-royal" onclick="bukaFoto(2)">
+                    <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=400" alt="Foto 3">
+                    <div class="frame-overlay">Sentuh Aku ✨</div>
+                </div>
+                <div class="frame-royal" onclick="bukaFoto(3)">
+                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400" alt="Foto 4">
+                    <div class="frame-overlay">Sentuh Aku ✨</div>
+                </div>
+                <div class="frame-royal" onclick="bukaFoto(4)">
+                    <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=400" alt="Foto 5">
+                    <div class="frame-overlay">Sentuh Aku ✨</div>
+                </div>
+                <div class="frame-royal" onclick="bukaFoto(5)">
+                    <img src="https://images.unsplash.com/photo-1501901604252-bb42f2b8834a?w=400" alt="Foto 6">
+                    <div class="frame-overlay">Sentuh Aku ✨</div>
+                </div>
+                <div class="frame-royal" onclick="bukaFoto(6)">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400" alt="Foto 7">
+                    <div class="frame-overlay">Sentuh Aku ✨</div>
+                </div>
+                <div class="frame-royal" onclick="bukaFoto(7)">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400" alt="Foto 8">
                     <div class="frame-overlay">Sentuh Aku ✨</div>
                 </div>
             </div>
 
-            <!-- Bagian Surat Cinta Gulung -->
             <div class="scroll-section">
                 <button id="btnBacaSurat" class="btn-royal-large" onclick="bacaTitah()">Baca Surat Spesialku 💌</button>
                 
@@ -86,16 +97,22 @@
                 </div>
             </div>
         </div>
+        
+        <button id="manualMusicBtn" onclick="putarMusikManual()" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-size: 1.5rem; background: #FFDE4D; border: 2px solid #D4AF37; padding: 12px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">🎵</button>
     </div>
 
-    <!-- MODAL FOTO ANIMASI HATI -->
     <div id="photoModal" class="photo-modal">
         <span class="close-modal" onclick="tutupFoto()">✖</span>
+        
+        <button class="nav-modal prev-btn" onclick="fotoSebelumnya()">◀</button>
+        
         <div class="modal-content">
             <img id="modalImg" src="">
             <h2 id="modalCaption" class="parisienne"></h2>
             <div id="heartExplosion"></div>
         </div>
+        
+        <button class="nav-modal next-btn" onclick="fotoSelanjutnya()">▶</button>
     </div>
 
     <script src="script.js"></script>
