@@ -89,8 +89,8 @@ input[type="password"] {
 .section-title { font-size: 2.5rem; color: var(--gold); margin-bottom: 40px; }
 .gallery-palace { display: flex; justify-content: center; flex-wrap: wrap; gap: 35px; margin-bottom: 100px; }
 .frame-royal {
-    position: relative; width: 260px; height: 340px; cursor: pointer;
-    background: #fff; padding: 15px 15px 40px 15px; border-radius: 10px;
+    position: relative; width: 220px; height: 290px; cursor: pointer;
+    background: #fff; padding: 12px 12px 35px 12px; border-radius: 10px;
     border: 1px solid #eee; box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     transform: rotate(-3deg); transition: 0.4s; overflow: hidden;
 }
@@ -101,11 +101,11 @@ input[type="password"] {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(255,222,77,0.85); color: var(--text-dark);
     display: flex; justify-content: center; align-items: center;
-    font-size: 1.5rem; font-weight: bold; opacity: 0; transition: 0.3s;
+    font-size: 1.3rem; font-weight: bold; opacity: 0; transition: 0.3s;
 }
 .frame-royal:hover .frame-overlay { opacity: 1; }
 
-/* Surat Megah (Efek Kertas Gulung 3D) */
+/* Surat Megah */
 .btn-royal-large {
     background: var(--gold); color: #fff; font-size: 1.3rem;
     padding: 20px 40px; border-radius: 40px; border: none; cursor: pointer;
@@ -126,34 +126,48 @@ input[type="password"] {
 .surat-text { font-size: 1.25rem; line-height: 1.9; text-align: left; margin-top: 20px; font-weight: 500; color: #333; }
 .cursor { display: inline-block; width: 3px; height: 1.2rem; background: var(--gold); animation: blink 0.7s infinite; }
 
-/* Modal Foto Romantis */
+/* --- SLIDER MODAL NAVIGASI FOTO --- */
 .photo-modal {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(255,252,242,0.95); z-index: 9999;
+    background: rgba(255,252,242,0.96); z-index: 9999;
     display: flex; justify-content: center; align-items: center;
     opacity: 0; pointer-events: none; transition: 0.4s;
 }
 .photo-modal.show { opacity: 1; pointer-events: auto; }
-.close-modal { position: absolute; top: 30px; right: 40px; font-size: 4rem; color: var(--gold); cursor: pointer; transition: 0.3s; }
+.close-modal { position: absolute; top: 30px; right: 40px; font-size: 4rem; color: var(--gold); cursor: pointer; transition: 0.3s; z-index: 10001; }
 .close-modal:hover { transform: scale(1.2); }
-.modal-content { text-align: center; position: relative; }
-.modal-content img { max-height: 75vh; border: 6px solid var(--yellow-nailong); border-radius: 20px; box-shadow: 0 20px 50px rgba(212,175,55,0.4); transform: scale(0.8); transition: 0.5s; }
+
+.modal-content { text-align: center; position: relative; max-width: 80%; }
+.modal-content img { max-height: 70vh; max-width: 100%; border: 6px solid var(--yellow-nailong); border-radius: 20px; box-shadow: 0 20px 50px rgba(212,175,55,0.4); transform: scale(0.8); transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
 .photo-modal.show .modal-content img { transform: scale(1); }
-.modal-content h2 { color: #E91E63; font-size: 3.5rem; margin-top: 25px; text-shadow: 0 2px 5px rgba(233, 30, 99, 0.2); }
+.modal-content h2 { color: #E91E63; font-size: 2.8rem; margin-top: 25px; text-shadow: 0 2px 5px rgba(233, 30, 99, 0.1); font-family: 'Parisienne', cursive; }
 .ledakan-cinta { position: absolute; font-size: 35px; pointer-events: none; animation: terbang 1.2s ease-out forwards; }
 
-/* Animasi Hujan Emas Confetti */
-.confetti-item {
-    position: absolute; color: #FFDE4D; font-size: 20px; pointer-events: none; z-index: 0; opacity: 0.6;
-    animation: hujan-emas linear forwards;
+.nav-modal {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255, 222, 77, 0.9); border: 2px solid var(--gold);
+    color: var(--text-dark); font-size: 1.8rem; padding: 15px 22px;
+    border-radius: 50%; cursor: pointer; transition: 0.3s ease;
+    z-index: 10000; box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
+.nav-modal:hover { background: var(--gold); color: #fff; transform: translateY(-50%) scale(1.1); }
+.prev-btn { left: 40px; }
+.next-btn { right: 40px; }
 
-/* Keyframes */
-@keyframes hujan-emas {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
-    100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
-}
+.confetti-item { position: absolute; color: #FFDE4D; font-size: 20px; pointer-events: none; z-index: 0; opacity: 0.6; animation: hujan-emas linear forwards; }
+
+/* Keyframes & Media Queries */
+@keyframes hujan-emas { 0% { transform: translateY(0) rotate(0deg); opacity: 0.8; } 100% { transform: translateY(105vh) rotate(360deg); opacity: 0; } }
 @keyframes terbang { 0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(20deg); opacity: 0; } }
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+@media (max-width: 768px) {
+    .nav-modal { padding: 10px 15px; font-size: 1.3rem; }
+    .prev-btn { left: 15px; }
+    .next-btn { right: 15px; }
+    .close-modal { top: 20px; right: 25px; font-size: 2.5rem; }
+    .giant-title { font-size: 3rem; }
+    .modal-content h2 { font-size: 2rem; }
+}
