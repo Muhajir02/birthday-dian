@@ -1,117 +1,54 @@
-// PASSWORD
-function enterSite(){
-  document.getElementById("intro").classList.add("hidden");
-  document.getElementById("lock").classList.remove("hidden");
+// Fungsi untuk Membuka Surat Cinta
+function openLetter() {
+    const letter = document.getElementById('loveLetter');
+    letter.classList.toggle('hidden');
+    
+    // Mengubah teks tombol setelah dibuka
+    const btn = document.querySelector('.open-letter-btn');
+    if (!letter.classList.contains('hidden')) {
+        btn.innerHTML = "Tutup Surat Cinta ✉️";
+    } else {
+        btn.innerHTML = "Buka Surat Cinta ✉️";
+    }
 }
 
-function checkPass(){
-  let p = document.getElementById("pass").value;
-
-  if(p === "200620"){ // ganti sesuai keinginan
-    document.getElementById("lock").classList.add("hidden");
-    document.getElementById("main").classList.remove("hidden");
-    startCountdown();
-    startSlider();
-  } else {
-    alert("Password salah 😜");
-  }
+// Fungsi Mengontrol Musik
+function toggleMusic() {
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
+    
+    if (music.paused) {
+        music.play();
+        btn.innerHTML = "⏸️ Jeda Musik";
+    } else {
+        music.pause();
+        btn.innerHTML = "🎵 Putar Musik";
+    }
 }
 
-// COUNTDOWN
-function startCountdown(){
-  let nowYear = new Date().getFullYear();
-  let target = new Date("June 20, " + nowYear + " 00:00:00").getTime();
+// Efek Hati Berjatuhan secara otomatis
+function createHeart() {
+    const container = document.getElementById('heartContainer');
+    if (!container) return;
 
-  setInterval(()=>{
-    let now = new Date().getTime();
-    let diff = target - now;
-
-    let d = Math.floor(diff/(1000*60*60*24));
-    document.getElementById("countdown").innerHTML =
-    "⏳ " + d + " hari lagi menuju ulang tahun kamu 💖";
-  },1000);
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    
+    // Karakter jatuh acak antara Hati (❤️) dan Bintang Kuning (💛) biar masuk tema Nailong
+    const elements = ['❤️', '💛', '✨', '🥰'];
+    heart.innerText = elements[Math.floor(Math.random() * elements.length)];
+    
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // Antara 2-5 detik
+    heart.style.fontSize = Math.random() * 15 + 15 + 'px'; // Ukuran acak
+    
+    container.appendChild(heart);
+    
+    // Hapus elemen setelah animasi selesai agar tidak membebani memori browser
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
 }
 
-// SLIDER
-let images = [
-"https://i.pinimg.com/736x/3c/0a/5d/3c0a5d.jpg",
-"https://i.pinimg.com/736x/9a/7d/8f/9a7d8f.jpg",
-"https://i.pinimg.com/736x/1b/2f/3c/1b2f3c.jpg"
-];
-
-let index = 0;
-
-function startSlider(){
-  document.getElementById("slide").src = images[0];
-
-  setInterval(()=>{
-    index = (index + 1) % images.length;
-    document.getElementById("slide").src = images[index];
-  },2000);
-}
-
-// TYPING EFFECT
-const message = `Hai Dian... 💖
-
-Selamat ulang tahun ya sayangku 🎂
-
-Aku bersyukur banget punya kamu...
-Kamu adalah alasan aku bahagia 💕
-
-Aku akan selalu ada buat kamu...
-
-I LOVE YOU ❤️`;
-
-let i = 0;
-
-function startLove(){
-  document.getElementById("music").play();
-
-  document.getElementById("text").innerHTML="";
-  i = 0;
-  typeWriter();
-  startConfetti();
-}
-
-function typeWriter(){
-  if(i < message.length){
-    document.getElementById("text").innerHTML += message.charAt(i);
-    i++;
-    setTimeout(typeWriter,40);
-  }
-}
-
-// CONFETTI
-const canvas = document.getElementById("confetti");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let pieces = [];
-
-for(let i=0;i<100;i++){
-  pieces.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    size:Math.random()*5+2,
-    speed:Math.random()*3+1
-  });
-}
-
-function startConfetti(){
-  function update(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    pieces.forEach(p=>{
-      p.y += p.speed;
-      if(p.y > canvas.height) p.y = 0;
-
-      ctx.fillStyle = "pink";
-      ctx.fillRect(p.x,p.y,p.size,p.size);
-    });
-
-    requestAnimationFrame(update);
-  }
-  update();
-}
+// Jalankan efek hati berjatuhan setiap 400ms
+setInterval(createHeart, 400);
