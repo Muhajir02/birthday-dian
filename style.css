@@ -1,0 +1,76 @@
+body{
+  margin:0;
+  font-family:'Comic Sans MS';
+  text-align:center;
+  background:linear-gradient(135deg,#ffe6f0,#fff3b0);
+  overflow:hidden;
+}
+
+/* hidden */
+.hidden{display:none}
+
+/* intro & lock */
+#intro, #lock{
+  position:absolute;
+  top:40%;
+  width:100%;
+}
+
+/* hearts */
+.hearts::before{
+  content:"💖 💕 💗 💓 💘 💞";
+  position:fixed;
+  width:100%;
+  font-size:30px;
+  animation:fall 10s linear infinite;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-100px);}
+  100%{transform:translateY(100vh);}
+}
+
+/* nailong */
+.nailong{
+  width:200px;
+  margin:20px;
+  animation:wiggle 2s infinite;
+}
+
+@keyframes wiggle{
+  0%,100%{transform:rotate(0);}
+  50%{transform:rotate(10deg);}
+}
+
+/* slider */
+.slider img{
+  width:250px;
+  border-radius:20px;
+  margin:20px;
+}
+
+/* button */
+button{
+  padding:12px 25px;
+  border:none;
+  border-radius:20px;
+  background:hotpink;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* text */
+#text{
+  font-size:20px;
+  color:#d63384;
+  margin:20px;
+  white-space:pre-line;
+}
+
+/* confetti */
+#confetti{
+  position:fixed;
+  top:0;
+  left:0;
+}
