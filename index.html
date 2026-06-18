@@ -3,116 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Istana Megah Untuk Dian 💛</title>
+    <title>Kado Spesial Untuk Dian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Luckiest+Guy&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,600&family=Parisienne&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <audio id="bgMusic" loop preload="auto">
-        <source src="everything-you-are.mp3" type="audio/mpeg">
+    <audio id="bg-music" loop>
+        <source src="kembang api.mp4" type="audio/mp4">
     </audio>
 
-    <div id="palaceGate" class="gate-wrapper">
-        <div class="gate-left"></div>
-        <div class="gate-right"></div>
-        
-        <div class="login-card">
-            <img src="https://media1.tenor.com/m/9n9G0t0Oq9AAAAAd/nailong-cute.gif" alt="Nailong Kunci" class="royal-nailong">
-            <h1 class="palace-title">Istana Memori</h1>
-            <p class="subtitle">Kunci gerbang ini dengan namamu di hatiku.</p>
-            
-            <input type="password" id="password" placeholder="Masukkan Sandi Rahasia...">
-            <button onclick="bukaGerbang()" class="btn-royal">Buka Istana ✨</button>
-            <p id="errorMsg" class="error hidden">Itu bukan sandi kita, Sayang! Coba lagi.</p>
+    <button id="music-toggle" class="pulse-btn"><i class="fas fa-volume-mute"></i></button>
+
+    <div id="door-left" class="door"></div>
+    <div id="door-right" class="door"></div>
+
+    <div id="login-section" class="screen">
+        <div class="login-box glass-card">
+            <div class="kunci-hati-icon">
+                <i class="fas fa-heart love-bg"></i>
+                <i class="fas fa-key key-fg"></i>
+            </div>
+            <h2>Halo Sayang 👋</h2>
+            <p>Masukkan password buat buka kadonya ya!</p>
+            <div class="nailong-login-wrapper">
+                <input type="password" id="password-input" placeholder="Passwordnya apa hayo?">
+                <span id="error-msg" class="hidden">Password salah, coba lagi sayang! 😜</span>
+            </div>
+            <button id="login-btn" class="pulse-btn">Buka Kado 🎁</button>
         </div>
     </div>
 
-    <div id="mainPalace" class="main-palace hidden">
-        
-        <img src="https://media.tenor.com/tHqgU_vAEEwAAAAi/nailong-cute.gif" class="flying-nailong" style="top: 10%; left: 5%; animation-duration: 4s;">
-        <img src="https://media1.tenor.com/m/O6rE5G9a5b0AAAAd/nailong-love.gif" class="flying-nailong" style="top: 20%; right: 5%; animation-duration: 5s;">
-        
-        <div class="palace-content">
-            <div class="header-section">
-                <h2 class="parisienne accent-text">Selamat Ulang Tahun yang ke-21,</h2>
-                <h1 class="playfair giant-title">Dian Sri Mentari</h1>
-                <div class="royal-divider">
-                    <span>✨</span>💛<span>✨</span>
+    <div id="prank-section" class="screen hidden">
+        <div class="glass-card quiz-container" style="max-width: 480px; padding: 30px; margin-top: 10vh;">
+            <div style="text-align: center; margin-bottom: 25px;">
+                <img src="https://i.pinimg.com/originals/e8/1a/02/e81a0219cda74780516bd75d1f1ce157.gif" alt="Cute Hug" style="width: 140px; border-radius: 15px; margin-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <h2 style="font-family: 'Dancing Script', cursive; font-size: 3.2rem; color: #ff4081; margin-bottom: 5px; text-shadow: 0 2px 4px rgba(255, 64, 129, 0.2);">Haii Sayang... 💕</h2>
+                <p style="color: #666; font-size: 1.05rem; font-weight: 500; line-height: 1.5;">Sebelum kado utamanya kuberikan, jawab jujur ya!<br>Apakah kamu kangen aku hari ini?</p>
+            </div>
+            <div style="position: relative; height: 70px; display: flex; justify-content: center; align-items: center; gap: 20px;">
+                <button id="btn-iya-prank" class="pulse-btn" style="z-index: 2; font-size: 1.1rem; padding: 12px 30px; background: linear-gradient(135deg, #ff4081, #ff79b0); box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);">Iya dong! ❤️</button>
+                <button id="btn-nggak-prank" class="pulse-btn" style="background: white; color: #ff4081; border: 2px solid #ff4081; z-index: 2; position: relative; font-size: 1.1rem; padding: 10px 25px; box-shadow: none;">Nggak 😜</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="countdown-section" class="screen hidden">
+        <div class="glass-card" style="max-width: 480px; padding: 30px; margin-top: 10vh;">
+            <div style="text-align: center; margin-bottom: 25px;">
+                <i class="fas fa-hourglass-half" style="font-size: 3rem; color: #ff4081; animation: floatingCard 2s infinite; margin-bottom: 10px;"></i>
+                <h2 style="font-family: 'Dancing Script', cursive; font-size: 3.2rem; color: #ff4081; margin-bottom: 5px; text-shadow: 0 2px 4px rgba(255, 64, 129, 0.2);">Menuju 20 Juni ✨</h2>
+                <p style="color: #666; font-size: 1.05rem; font-weight: 500; line-height: 1.5;">Sabar ya sayang, kembang apinya baru bisa dinyalakan dalam waktu:</p>
+            </div>
+            <div class="timer-grid" style="margin-bottom: 30px; transform: scale(1.1); margin-top: 20px;">
+                <div class="timer-box" style="background: #fff0f3; border: 1px solid rgba(255, 64, 129, 0.3);"><span id="bday-days">00</span><p style="color: #e11d48;">Hari</p></div>
+                <div class="timer-box" style="background: #fff0f3; border: 1px solid rgba(255, 64, 129, 0.3);"><span id="bday-hours">00</span><p style="color: #e11d48;">Jam</p></div>
+                <div class="timer-box" style="background: #fff0f3; border: 1px solid rgba(255, 64, 129, 0.3);"><span id="bday-minutes">00</span><p style="color: #e11d48;">Menit</p></div>
+                <div class="timer-box" style="background: #fff0f3; border: 1px solid rgba(255, 64, 129, 0.3);"><span id="bday-seconds">00</span><p style="color: #e11d48;">Detik</p></div>
+            </div>
+            <div style="text-align: center;">
+                <button id="btn-lanjut-countdown" class="pulse-btn" style="width: 100%; font-size: 1.05rem; background: linear-gradient(135deg, #ff4081, #ff79b0); box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);">Nggak Sabar? Nyalakan! 🚀</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="fireworks-section" class="screen hidden">
+        <canvas id="fireworks-canvas"></canvas>
+        <p id="tap-hint">👆 Tap Layar Untuk Menyalakan Kembang Api 👆</p>
+        <div class="fireworks-text" id="dynamic-text"></div>
+    </div>
+
+    <div id="galaxy-section" class="screen hidden">
+        <canvas id="galaxy-canvas"></canvas>
+        <div class="center-heart">
+            <div class="heart-pulse-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#ff3366" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+            </div>
+        </div>
+        <div id="orbit-container"></div>
+    </div>
+
+    <div id="quiz-section" class="screen hidden">
+        <div class="glass-card quiz-container" style="max-width: 480px; padding: 30px;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <i class="fas fa-question-circle" style="font-size: 3rem; color: #ff4081; animation: floatingCard 2s infinite;"></i>
+                <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: #D97706; margin-top: 10px;">Love Quiz ❤️</h2>
+                <p style="color: #666; font-size: 0.95rem;">Jawab 3 pertanyaan seru ini dengan benar<br>buat buka kado terakhir!</p>
+            </div>
+            <div class="quiz-box" id="quiz-box">
+                <div id="q1" class="quiz-item">
+                    <label>1. Dimana pertama kali kita jalan bareng? 🤔</label>
+                    <input type="text" id="ans1" placeholder="Tulis nama tempatnya">
+                </div>
+                <div id="q2" class="quiz-item hidden">
+                    <label>2. Seberapa sayang kamu sama aku? (1-100%) 😂</label>
+                    <input type="number" id="ans2" placeholder="Tulis angkanya aja">
+                </div>
+                <div id="q3" class="quiz-item hidden">
+                    <label>3. Kapan tanggal kita jadian? 🗓️</label>
+                    <input type="date" id="ans3" style="width: 100%; text-align: center;">
+                </div>
+                <span id="quiz-error" class="hidden quiz-error-msg">Hmm, yakin jawabannya itu? Coba inget-inget lagi sayang! 🤔</span>
+            </div>
+            <button id="submit-quiz" class="pulse-btn" style="width: 100%; margin-top: 15px;">Kirim Jawaban 💌</button>
+        </div>
+    </div>
+
+    <div id="typewriter-section" class="screen hidden">
+        <div class="glass-card" style="max-width: 500px; padding: 30px;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: #ff4081; text-shadow: 0 2px 5px rgba(0,0,0,0.2);">Teruntukmu,</h2>
+            </div>
+            <p id="typewriter-text" class="typewriter"></p>
+            <div style="text-align: center; margin-top: 25px;">
+                <button id="btn-to-memories" class="pulse-btn hidden" style="font-size: 0.95rem;">Lihat Memories Kita ✨</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="memories-section" class="screen hidden">
+        <div class="glass-card" style="padding: 30px 15px; width: 95%; max-width: 550px; margin-bottom: 30px;">
+            <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: #ff4081; text-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-bottom: 5px;">Our Memories</h2>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 25px; line-height: 1.5; font-weight: 500;">Momen indah yang selalu aku simpan rapi.<br>(Klik untuk membuka album memori)</p>
+            
+            <div class="video-memories-grid">
+                <div class="v-row top-row">
+                    <div class="v-polaroid" onclick="openMemory(0)">
+                        <video src="img/video1.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                    <div class="v-polaroid" onclick="openMemory(1)"><img src="img/foto2.jpeg" alt="Memori 2"></div>
+                </div>
+                <div class="v-row bottom-row">
+                    <div class="v-polaroid" onclick="openMemory(2)"><img src="img/foto3.jpeg" alt="Memori 3"></div>
+                    <div class="v-polaroid" onclick="openMemory(3)"><img src="img/foto4.jpeg" alt="Memori 4"></div>
+                    <div class="v-polaroid" onclick="openMemory(4)"><img src="img/foto5.jpeg" alt="Memori 5"></div>
                 </div>
             </div>
-
-            <div class="countdown-palace">
-                <div class="time-box"><span id="days">00</span><p>Hari</p></div>
-                <div class="time-box"><span id="hours">00</span><p>Jam</p></div>
-                <div class="time-box"><span id="mins">00</span><p>Menit</p></div>
-                <div class="time-box"><span id="secs">00</span><p>Detik</p></div>
-            </div>
-
-            <h3 class="playfair section-title">Koleksi Senyum Terindahmu</h3>
-            <div class="gallery-palace">
-                <div class="frame-royal" onclick="bukaFoto(0)">
-                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400" alt="Foto 1">
-                    <div class="frame-overlay">Sentuh Aku ✨</div>
-                </div>
-                <div class="frame-royal" onclick="bukaFoto(1)">
-                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400" alt="Foto 2">
-                    <div class="frame-overlay">Sentuh Aku ✨</div>
-                </div>
-                <div class="frame-royal" onclick="bukaFoto(2)">
-                    <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=400" alt="Foto 3">
-                    <div class="frame-overlay">Sentuh Aku ✨</div>
-                </div>
-                <div class="frame-royal" onclick="bukaFoto(3)">
-                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400" alt="Foto 4">
-                    <div class="frame-overlay">Sentuh Aku ✨</div>
-                </div>
-                <div class="frame-royal" onclick="bukaFoto(4)">
-                    <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=400" alt="Foto 5">
-                    <div class="frame-overlay">Sentuh Aku ✨</div>
-                </div>
-                <div class="frame-royal" onclick="bukaFoto(5)">
-                    <img src="https://images.unsplash.com/photo-1501901604252-bb42f2b8834a?w=400" alt="Foto 6">
-                    <div class="frame-overlay">Sentuh Aku ✨</div>
-                </div>
-                <div class="frame-royal" onclick="bukaFoto(6)">
-                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400" alt="Foto 7">
-                    <div class="frame-overlay">Sentuh Aku ✨</div>
-                </div>
-                <div class="frame-royal" onclick="bukaFoto(7)">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400" alt="Foto 8">
-                    <div class="frame-overlay">Sentuh Aku ✨</div>
-                </div>
-            </div>
-
-            <div class="scroll-section">
-                <button id="btnBacaSurat" class="btn-royal-large" onclick="bacaTitah()">Baca Surat Spesialku 💌</button>
+        </div>
+        <div class="glass-card romantic-room-card" style="max-width: 550px; padding: 25px; margin-bottom: 25px; width: 95%;">
+            <div class="love-counter-wrapper">
+                <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #ff4081; margin-bottom: 5px;">Our Love Journey ⏳</h3>
+                <p style="font-size: 0.85rem; color: #666; font-weight: 500; margin-bottom: 15px;">Setiap detik bersamamu adalah waktu yang paling berharga.</p>
                 
-                <div id="royalScroll" class="scroll-container hidden">
-                    <div class="scroll-paper">
-                        <img src="https://media1.tenor.com/m/O6rE5G9a5b0AAAAd/nailong-love.gif" alt="Nailong Surat" class="nailong-seal">
-                        <h2 class="parisienne accent-text" style="font-size:3.5rem; margin-bottom: 20px;">Teruntuk Permaisuriku,</h2>
-                        <p id="typedText" class="surat-text"></p>
+                <div class="timer-grid">
+                    <div class="timer-box"><span id="timer-days">00</span><p>Hari</p></div>
+                    <div class="timer-box"><span id="timer-hours">00</span><p>Jam</p></div>
+                    <div class="timer-box"><span id="timer-minutes">00</span><p>Menit</p></div>
+                    <div class="timer-box"><span id="timer-seconds">00</span><p>Detik</p></div>
+                </div>
+            </div>
+
+            <div class="music-slider-container">
+                <div class="spotify-card">
+                    <div class="vinyl-container">
+                        <div class="vinyl-disc">
+                            <img src="img/foto3.jpeg" alt="Cover Album"> 
+                            <div class="center-dot"></div>
+                        </div>
+                    </div>
+                    <div class="song-info">
+                        <h4>Lagu Favorit Dian 🎵</h4>
+                        <p class="song-title">Sesi Potret</p>
+                        <audio id="audio-1" controls style="width: 100%; height: 35px; margin-top: 5px; outline: none;">
+                            <source src="sesi potret.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+                <div class="spotify-card">
+                    <div class="vinyl-container">
+                        <div class="vinyl-disc">
+                            <img src="img/foto2.jpeg" alt="Cover Album"> 
+                            <div class="center-dot"></div>
+                        </div>
+                    </div>
+                    <div class="song-info">
+                        <h4>Lagu Kebangsaan Kita 💫</h4>
+                        <p class="song-title">Everything You Are</p>
+                        <audio id="audio-2" controls style="width: 100%; height: 35px; margin-top: 5px; outline: none;">
+                            <source src="everything-you-are.mp3" type="audio/mpeg">
+                        </audio>
                     </div>
                 </div>
             </div>
+            <p style="font-size: 0.75rem; text-align: center; color: #888; margin-top: 10px; font-weight: bold;">
+                <i class="fas fa-arrows-alt-h"></i> Geser untuk melihat lagu lain
+            </p>
         </div>
         
-        <button id="manualMusicBtn" onclick="putarMusikManual()" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-size: 1.5rem; background: #FFDE4D; border: 2px solid #D4AF37; padding: 12px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">🎵</button>
+        <div class="glass-card gift-section" style="max-width: 500px; padding: 25px; margin-bottom: 25px; width: 95%;">
+            <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #D97706; margin-bottom: 5px;">Pilih Kadomu 🎁</h3>
+            <p style="color: #666; font-size: 0.9rem; margin-bottom: 20px;">Pilih salah satu kado di bawah ini untuk menentukan kencan kita ya sayang! ❤️</p>
+            
+            <div id="mystery-gift-container" class="mystery-boxes">
+                <div class="mystery-box" data-gift="Makan Makanan Favorit Kita 🍔"><i class="fas fa-gift box-icon" style="color: #ff4081;"></i><p>Kado 1</p></div>
+                <div class="mystery-box" data-gift="Jalan-jalan ke Pantai 🌊"><i class="fas fa-gift box-icon" style="color: #00e5ff;"></i><p>Kado 2</p></div>
+                <div class="mystery-box" data-gift="Beli Boneka Nailong 🦖"><i class="fas fa-gift box-icon" style="color: #76ff03;"></i><p>Kado 3</p></div>
+                <div class="mystery-box" data-gift="Nonton Bioskop Romantis 🍿"><i class="fas fa-gift box-icon" style="color: #D97706;"></i><p>Kado 4</p></div>
+            </div>
+            
+            <div id="gift-success" class="hidden" style="margin-top: 15px; padding: 15px; background: rgba(255, 64, 129, 0.1); border-radius: 10px; color: #e91e63; font-weight: bold; border: 1px dashed #ff4081;">
+                Asyik! Nanti kita <span id="selected-gift-text" style="text-decoration: underline; font-size: 1.15rem; color: #D97706;">...</span> ya sayang! Siap-siap ya! 🥰
+            </div>
+        </div>
+
+        <div id="wish-box-container" class="glass-card wish-box" style="max-width: 500px; padding: 25px; margin-bottom: 80px;">
+            <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.3rem; color: #ff4081; margin-bottom: 10px;"><i class="fas fa-birthday-cake"></i> Wish Terbesar Kamu?</h3>
+            <p style="color: #666; font-size: 0.9rem; margin-bottom: 15px; font-weight: 500;">Tulis doa atau harapan kamu di hari ultah ini ya.<br>Aku bakal simpan rapi di kapsul waktu digital kita!</p>
+            
+            <textarea id="wish-input" placeholder="Tulis harapan tulus Dian di sini... ❤️" rows="4"></textarea>
+            
+            <button id="submit-wish" class="pulse-btn" style="width: 100%; margin-top: 15px;"><i class="fas fa-paper-plane"></i> Simpan Harapan 🌸</button>
+            
+            <div id="wish-success" class="hidden wish-success-msg">
+                <i class="fas fa-check-circle" style="font-size: 2.5rem; color: #a3e635; margin-bottom: 10px;"></i>
+                <h4>Hooray! Harapan Dian tersimpan</h4>
+                <p>Semoga semua doa baikmu dikabulkan ya sayang. Aku selalu ada buat dukung kamu! 💕</p>
+            </div>
+        </div>
     </div>
 
-    <div id="photoModal" class="photo-modal">
-        <span class="close-modal" onclick="tutupFoto()">✖</span>
-        
-        <button class="nav-modal prev-btn" onclick="fotoSebelumnya()">◀</button>
-        
-        <div class="modal-content">
-            <img id="modalImg" src="">
-            <h2 id="modalCaption" class="parisienne"></h2>
-            <div id="heartExplosion"></div>
+    <div id="memory-modal" class="hidden">
+        <div class="memory-glass">
+            <button id="close-memory"><i class="fas fa-times"></i></button>
+            <img id="memory-img" src="" alt="Memory">
+            <video id="memory-video" src="" controls playsinline class="hidden"></video>
+            <h2 id="memory-title">Judul</h2>
+            <p id="memory-text">Kata-kata romantis muncul di sini...</p>
+            
+            <div class="memory-slider-controls">
+                <button id="prev-memory" class="slider-btn"><i class="fas fa-chevron-left"></i></button>
+                <span id="memory-counter" style="color: #666; font-weight: bold; font-size: 0.95rem;">1 / 11</span>
+                <button id="next-memory" class="slider-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
         </div>
-        
-        <button class="nav-modal next-btn" onclick="fotoSelanjutnya()">▶</button>
+    </div>
+
+    <div id="popup-modal" class="hidden">
+        <div class="popup-glass">
+            <button id="close-popup"><i class="fas fa-times"></i></button>
+            <div id="popup-emoji">🧸</div>
+            <h2 id="popup-title">Judul</h2>
+            <p id="popup-text">Isi pesan...</p>
+        </div>
+    </div>
+
+    <div id="nav-controls" class="hidden">
+        <button id="btn-prev" class="nav-btn"><i class="fas fa-chevron-left"></i> Back</button>
+        <button id="btn-next" class="nav-btn">Next <i class="fas fa-chevron-right"></i></button>
     </div>
 
     <script src="script.js"></script>
