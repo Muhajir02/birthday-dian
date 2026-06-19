@@ -238,7 +238,7 @@ function startFireworks() {
 
 // --- 3. GALAKSI 3D ---
 const gxCanvas = document.getElementById("galaxy-canvas"); const gxCtx = gxCanvas.getContext("2d", { alpha: false }); let gxAnimationId, gxParticles = [], bgStars = [], orbitElements = [], gxTime = 0; let galaxyStartTime = 0; let introPhase = true;
-const orbitData = [ { emoji: "🧸", label: "Tempat Nyaman", title: "Tempat Nyaman", text: "Berada di dekatmu adalah tempat paling aman di seluruh galaksi." }, { emoji: "💖", label: "Dua Jiwa", title: "Dua Jiwa Satu Hati", text: "Semesta setuju menyatukan hati kita dalam satu orbit yang sama." }, { emoji: "✨", label: "Senyum Manismu", title: "Senyum Manismu", text: "Senyummu itu bagaikan rasi bintang terang, mengusir mendung." }, { emoji: "💌", label: "Pesan Rahasia", title: "Pesan Rahasia", text: "Mungkin aku tidak bilang setiap detik, tapi ingatlah I LOVE YOU." }, { emoji: "🌹", label: "Cintaku Padamu", title: "Cintaku Padamu", text: "Seperti galaksi yang terus meluas, begitu juga perasaanku ke kamu." }, { emoji: "🎀", label: "Selamanya", title: "Selamanya", text: "Terima kasih sudah lahir ke dunia. Aku ingin merayakan hari ini selamanya." } ];
+const orbitData = [ { emoji: "🧸", label: "Tempat Nyaman", title: "Tempat Nyaman", text: "Kamu adalah tempat nyaman yang selalu ingin aku pulang. Di dekatmu, semua rasa lelah hilang, dan hatiku selalu menemukan kedamaian yang tak tergantikan." }, { emoji: "💖", label: "Dua Jiwa", title: "Dua Jiwa Satu Hati", text: "Kita adalah dua jiwa satu hati, dipertemukan oleh takdir untuk saling melengkapi. Dalam setiap langkah, aku ingin terus berjalan bersamamu tanpa ragu." }, { emoji: "✨", label: "Senyum Manismu", title: "Senyum Manismu", text: "Senyum manismu adalah cahaya yang menerangi hariku. Bahkan di saat gelap, hanya dengan mengingatmu, semuanya terasa lebih hangat dan penuh harapan." }, { emoji: "💌", label: "Pesan Rahasia", title: "Pesan Rahasia", text: "Mungkin aku tidak bilang setiap detik, tapi ingatlah I LOVE YOU." }, { emoji: "🌹", label: "Cintaku Padamu", title: "Cintaku Padamu", text: "Cintaku padamu tak pernah berkurang, justru semakin tumbuh setiap hari. Di setiap detik yang kita lewati, aku semakin yakin bahwa kamu adalah alasan terindah dalam hidupku." }, { emoji: "🎀", label: "Selamanya", title: "Selamanya", text: "Selamanya untukmu, aku berjanji akan menjaga, mencintai, dan menemanimu dalam setiap suka dan duka. Kamu bukan hanya hari ini, tapi masa depanku." } ];
 function initGalaxy() { const dpr = window.devicePixelRatio || 1; const w = window.innerWidth; const h = window.innerHeight; gxCanvas.width = w * dpr; gxCanvas.height = h * dpr; gxCanvas.style.width = w + "px"; gxCanvas.style.height = h + "px"; gxCtx.scale(dpr, dpr); gxParticles = []; bgStars = []; for(let i=0; i<300; i++) bgStars.push({ x: (Math.random()-0.5)*w*2, y: (Math.random()-0.5)*h*2, z: Math.random()*2000 }); for(let i=0; i<1500; i++) { let targetR = Math.random()*(Math.min(w, h)*0.7); gxParticles.push({ angle: Math.random()*Math.PI*20, targetRadius: targetR, radius: targetR + 1000 + Math.random()*1000, speed: Math.random()*0.003+0.001, size: Math.random()*2+0.5, color: `hsl(${Math.random()*60+260}, 100%, 70%)` }); } if(orbitElements.length === 0) createOrbitingElements(); }
 function createOrbitingElements() { const container = document.getElementById("orbit-container"); orbitData.forEach((data, i) => { const item = document.createElement("div"); item.className = "orbit-item"; item.innerHTML = `<div class="orbit-icon-sphere">${data.emoji}</div><div class="orbit-label">${data.label}</div>`; item.addEventListener("click", () => { document.getElementById("popup-emoji").innerText = data.emoji; document.getElementById("popup-title").innerText = data.title; document.getElementById("popup-text").innerText = data.text; document.getElementById("popup-modal").classList.remove("hidden"); }); container.appendChild(item); orbitElements.push({ el: item, offset: i * (Math.PI * 2 / orbitData.length) }); }); }
 function startGalaxyAnimation() { if(gxAnimationId) cancelAnimationFrame(gxAnimationId); initGalaxy(); galaxyStartTime = Date.now(); introPhase = true; document.querySelector('.center-heart').classList.remove('show'); document.getElementById('orbit-container').classList.remove('show'); animateGalaxy(); window.addEventListener('resize', initGalaxy); }
@@ -325,9 +325,44 @@ function showQuizError() {
 }
 
 // --- 4. SURAT TERKETIK ---
-let typingActive = false; let typingTimeout;
-function startTypewriter() { const textElement = document.getElementById("typewriter-text"); const btnToMemories = document.getElementById("btn-to-memories"); textElement.innerHTML = ""; btnToMemories.classList.add("hidden"); const pesanSurat = "Happy Birthday, Dian! 🎉\n\nTeruntuk Dian sayang...\n\nDi hari ulang tahunmu yang spesial ini, aku cuma mau bilang terima kasih banyak udah hadir dan bertahan di hidupku. Kamu selalu jadi alasan terbaik buat aku tersenyum setiap harinya.\n\nSemoga semua yang kamu impikan dan cita-citakan bisa segera tercapai. Jangan lupa untuk selalu bahagia ya! Kita akan terus sama-sama bikin kenangan indah. I Love You to the moon and back! 💕"; let indexHuruf = 0; typingActive = true; function ngetik() { if (!typingActive || currentSlide !== 6) return; if (indexHuruf < pesanSurat.length) { if (pesanSurat.charAt(indexHuruf) === '\n') { textElement.innerHTML += "<br>"; } else { textElement.innerHTML += pesanSurat.charAt(indexHuruf); } indexHuruf++; typingTimeout = setTimeout(ngetik, 40); } else { btnToMemories.classList.remove("hidden"); } } clearTimeout(typingTimeout); ngetik(); }
+let typingActive = false;
+let typingTimeout;
 
+function startTypewriter() {
+  const textElement = document.getElementById("typewriter-text");
+  const btnToMemories = document.getElementById("btn-to-memories");
+
+  textElement.innerHTML = "";
+  btnToMemories.classList.add("hidden");
+
+  const pesanSurat = "Happy Birthday, Dian! 🎉💖\n\nDi hari ulang tahunmu yang begitu spesial ini, aku ingin kamu tahu betapa berharganya dirimu di hidupku. Terima kasih sudah hadir, bukan hanya sekadar datang, tapi juga bertahan dan menemani setiap langkahku dengan penuh cinta.\n\nCintaku padamu tak pernah berkurang, justru semakin tumbuh setiap hari. Kamu adalah alasan di balik senyumku, bahkan di saat dunia terasa berat.\n\nKamu adalah tempat nyaman yang selalu ingin aku tuju. Bersamamu, aku merasa lengkap, seolah kita adalah dua jiwa satu hati yang dipertemukan untuk saling melengkapi.\n\nSenyum manismu adalah hal sederhana yang selalu berhasil membuat hariku lebih indah. Dan di hari ini, aku hanya ingin melihat kamu tersenyum lebih bahagia dari sebelumnya.\n\nSemoga semua impianmu bisa segera tercapai. Aku akan selalu ada untukmu, hari ini, esok, dan selamanya.\n\nI love you to the moon and back… and more than that, always. 💕✨";
+
+  let indexHuruf = 0;
+  typingActive = true;
+
+  function ngetik() {
+    if (!typingActive || currentSlide !== 6) return;
+
+    if (indexHuruf < pesanSurat.length) {
+      if (pesanSurat.charAt(indexHuruf) === '\n') {
+        textElement.innerHTML += "<br>";
+      } else {
+        textElement.innerHTML += pesanSurat.charAt(indexHuruf);
+      }
+      indexHuruf++;
+      typingTimeout = setTimeout(ngetik, 40);
+    } else {
+      btnToMemories.classList.remove("hidden");
+    }
+  }
+
+  clearTimeout(typingTimeout);
+  ngetik();
+}
+
+document.getElementById("btn-to-memories").addEventListener("click", () => {
+  goToSlide(7);
+});
 document.getElementById("btn-to-memories").addEventListener("click", () => { goToSlide(7); }); // Ke Memories
 
 // --- 5. LOGIKA ALBUM SLIDER MEMORIES ---
