@@ -11,9 +11,9 @@ const navControls = document.getElementById("nav-controls");
 const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
 
-// ==========================================
+// ========================================================
 // FITUR HATI TERBANG SAAT DIKLIK
-// ==========================================
+// ========================================================
 document.addEventListener('click', function(e) {
     const targetTag = e.target.tagName.toLowerCase();
     if(targetTag === 'input' || targetTag === 'textarea' || targetTag === 'button' || e.target.closest('button')) return;
@@ -108,7 +108,7 @@ function checkPassword() {
     } else { document.getElementById("error-msg").classList.remove("hidden"); }
 }
 
-// --- LOGIKA PRANK ---
+// --- LOGIKA PRANK LARI-LARI ---
 const btnNggakPrank = document.getElementById("btn-nggak-prank");
 const btnIyaPrank = document.getElementById("btn-iya-prank");
 if(btnNggakPrank && btnIyaPrank) {
@@ -123,6 +123,7 @@ if(btnNggakPrank && btnIyaPrank) {
         btnNggakPrank.style.left = Math.max(10, Math.floor(Math.random() * maxX)) + 'px';
         btnNggakPrank.style.top = Math.max(10, Math.floor(Math.random() * maxY)) + 'px';
     }
+
     btnIyaPrank.addEventListener("click", () => goToSlide(2));
 }
 
@@ -146,16 +147,16 @@ function updateUltahTimer() {
     document.getElementById("bday-minutes").innerText = String(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
     document.getElementById("bday-seconds").innerText = String(Math.floor((difference % (1000 * 60)) / 1000)).padStart(2, '0');
 }
-setInterval(updateUltahTimer, 1000); updateUltahTimer();
+setInterval(updateUltahTimer, 1000);
+updateUltahTimer();
 document.getElementById("btn-lanjut-countdown").addEventListener("click", () => goToSlide(3));
 
-// --- 2. KEMBANG API (ANTI LAG & WARNA PASTI BEDA) ---
+// --- 2. KEMBANG API (ANTI LAG & WARNA BEDA-BEDA) ---
 const fwCanvas = document.getElementById("fireworks-canvas"); const fwCtx = fwCanvas.getContext("2d", { alpha: false }); 
 const fwSection = document.getElementById("fireworks-section"); let fwRockets = [], fwParticles = [], fwStars = [];
 const wishes = ["HAPPY BIRTHDAY\nDIAN! 🎉", "WISH YOU ALL\nTHE BEST", "SUKACITA & CINTA", "SUKSES SELALU ✨", "SEMOGA IMPIANMU\nTERCAPAI 🌟", "I LOVE YOU! 💕"];
 let wishIndex = 0, lastTapTime = 0; 
-
-// Warna spesifik tiap kalimat (pasti berbeda urutannya)
+// 6 Warna Berbeda yang pasti di-assign 1 per 1 untuk setiap kata
 const rainbowColors = ['#ff4081', '#00e5ff', '#76ff03', '#ffff00', '#ea80fc', '#ff6a00'];
 
 const toGalaxyBtn = document.createElement("button"); toGalaxyBtn.innerHTML = "Lanjut Liat Semesta ✨"; toGalaxyBtn.className = "pulse-btn"; 
@@ -172,8 +173,8 @@ fwSection.addEventListener("click", function(e) {
     wishIndex++; if (wishIndex >= 5) toGalaxyBtn.style.display = "block";
 });
 
-// Bintang background dikurangi agar tidak lag
-for (let i=0; i<50; i++) fwStars.push({ x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, s: Math.random()*2+1.5, alpha: Math.random(), speed: Math.random()*1.5+0.5 });
+// Mengurangi jumlah bintang belakang agar tidak lag di HP
+for (let i=0; i<60; i++) fwStars.push({ x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, s: Math.random()*2+1.5, alpha: Math.random(), speed: Math.random()*1.5+0.5 });
 
 class FwRocket {
     constructor(tx, ty, text, color) { 
@@ -188,8 +189,8 @@ class FwRocket {
         fwCtx.beginPath(); fwCtx.moveTo(this.lastX, this.lastY); fwCtx.lineTo(this.x, this.y); fwCtx.strokeStyle = this.color; fwCtx.lineWidth = 4; fwCtx.lineCap = "round"; fwCtx.stroke();
         if (this.y <= this.ty && !this.exploded) { 
             this.exploded = true; 
-            // Kurangi ledakan menjadi 30 partikel agar HP mulus
-            for(let i=0; i<30; i++) { fwParticles.push(new FwParticle(this.x, this.y, this.color)); } 
+            // Mengurangi ledakan partikel agar lancar (dari 80 ke 40)
+            for(let i=0; i<40; i++) { fwParticles.push(new FwParticle(this.x, this.y, this.color)); } 
             showWishText(this.text, this.color, this.x, this.y); 
         }
     }
@@ -212,8 +213,8 @@ function startFireworks() {
         fwCtx.globalAlpha = 1; 
         for (let i = fwRockets.length-1; i>=0; i--) { if (fwRockets[i].exploded) fwRockets.splice(i, 1); else fwRockets[i].update(); } 
         for (let i = fwParticles.length-1; i>=0; i--) { if (fwParticles[i].alpha <= 0) fwParticles.splice(i, 1); else fwParticles[i].update(); } 
-        // Batasi memori array partikel 
-        if (fwParticles.length > 150) fwParticles.splice(0, fwParticles.length - 150); 
+        // Batasi maksimal partikel agar HP tidak panas/lag
+        if (fwParticles.length > 200) fwParticles.splice(0, fwParticles.length - 200); 
     } 
     animate();
 }
