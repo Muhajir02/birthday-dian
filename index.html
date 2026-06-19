@@ -2,20 +2,21 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- Meta tag wajib agar layar tidak bisa di-zoom/scroll paksa oleh browser -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kado Spesial Untuk Dian</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Luckiest+Guy&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Paksaan Anti-Stuck pada Layar Awal */
         #login-section, #prank-section, #countdown-section { z-index: 9999 !important; }
     </style>
 </head>
 <body>
 
-    <audio id="bg-music" loop><source src="kembang api.mp4" type="audio/mp4"></audio>
+    <audio id="bg-music" loop>
+        <source src="kembang api.mp4" type="audio/mp4">
+    </audio>
+
     <button id="music-toggle" class="pulse-btn"><i class="fas fa-volume-mute"></i></button>
 
     <div id="door-left" class="door"></div>
@@ -23,8 +24,11 @@
 
     <!-- SLIDE 0: LOGIN -->
     <div id="login-section" class="screen">
-        <div class="login-box glass-card scroll-box">
-            <div class="kunci-hati-icon"><i class="fas fa-heart love-bg"></i><i class="fas fa-key key-fg"></i></div>
+        <div class="login-box glass-card">
+            <div class="kunci-hati-icon">
+                <i class="fas fa-heart love-bg"></i>
+                <i class="fas fa-key key-fg"></i>
+            </div>
             <h2>Halo Sayang 👋</h2>
             <p>Masukkan password buat buka kadonya ya!</p>
             <div class="nailong-login-wrapper">
@@ -37,7 +41,7 @@
 
     <!-- SLIDE 1: PRANK -->
     <div id="prank-section" class="screen hidden" style="background: rgba(254, 249, 195, 0.5); backdrop-filter: blur(5px);">
-        <div class="glass-card scroll-box" style="max-width: 450px;">
+        <div class="glass-card" style="max-width: 480px;">
             <div style="text-align: center; margin-bottom: 25px;">
                 <img src="img/peluk.gif" onerror="this.src='https://c.tenor.com/8lO320RzE98AAAAC/milk-and-mocha-bear.gif'" alt="Cute Hug" style="width: 140px; border-radius: 15px; margin-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                 <h2 style="font-family: 'Dancing Script', cursive; font-size: 3.2rem; color: #ff4081; margin-bottom: 5px; text-shadow: 0 2px 4px rgba(255, 64, 129, 0.2);">Haii Sayang... 💕</h2>
@@ -52,7 +56,7 @@
 
     <!-- SLIDE 2: COUNTDOWN -->
     <div id="countdown-section" class="screen hidden" style="background: rgba(254, 249, 195, 0.5); backdrop-filter: blur(5px);">
-        <div class="glass-card scroll-box" style="max-width: 480px;">
+        <div class="glass-card" style="max-width: 480px;">
             <div style="text-align: center; margin-bottom: 25px;">
                 <i class="fas fa-hourglass-half" style="font-size: 3rem; color: #ff4081; animation: floatingCard 2s infinite; margin-bottom: 10px;"></i>
                 <h2 style="font-family: 'Dancing Script', cursive; font-size: 3.2rem; color: #ff4081; margin-bottom: 5px; text-shadow: 0 2px 4px rgba(255, 64, 129, 0.2);">Menuju 20 Juni ✨</h2>
@@ -70,7 +74,7 @@
         </div>
     </div>
 
-    <!-- SLIDE 3: FIREWORKS (BERSIH DARI EFEK JATUH) -->
+    <!-- SLIDE 3: FIREWORKS -->
     <div id="fireworks-section" class="screen hidden">
         <canvas id="fireworks-canvas"></canvas>
         <p id="tap-hint">👆 Tap Layar Untuk Menyalakan Kembang Api 👆</p>
@@ -90,9 +94,9 @@
         <div id="orbit-container"></div>
     </div>
 
-    <!-- SLIDE 5: QUIZ (DI SCROLL DALAM KOTAK) -->
+    <!-- SLIDE 5: QUIZ -->
     <div id="quiz-section" class="screen hidden">
-        <div class="glass-card scroll-box" style="max-width: 480px;">
+        <div class="glass-card" style="max-width: 480px;">
             <div style="text-align: center; margin-bottom: 20px;">
                 <i class="fas fa-question-circle" style="font-size: 3rem; color: #ff4081; animation: floatingCard 2s infinite;"></i>
                 <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: #D97706; margin-top: 10px;">Love Quiz ❤️</h2>
@@ -117,9 +121,9 @@
         </div>
     </div>
 
-    <!-- SLIDE 6: SURAT (DI SCROLL DALAM KOTAK) -->
+    <!-- SLIDE 6: TYPEWRITER -->
     <div id="typewriter-section" class="screen hidden">
-        <div class="glass-card scroll-box" style="max-width: 500px;">
+        <div class="glass-card" style="max-width: 500px;">
             <div style="text-align: center; margin-bottom: 20px;">
                 <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: #ff4081; text-shadow: 0 2px 5px rgba(0,0,0,0.2);">Teruntukmu,</h2>
             </div>
@@ -130,9 +134,9 @@
         </div>
     </div>
 
-    <!-- SLIDE 7: MEMORIES (HANYA 5 FOTO TAMPIL) -->
+    <!-- SLIDE 7: MEMORIES -->
     <div id="memories-section" class="screen hidden">
-        <div class="glass-card scroll-box" style="width: 95%; max-width: 550px;">
+        <div class="glass-card" style="width: 95%; max-width: 550px;">
             <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: #ff4081; margin-bottom: 5px;">Our Memories</h2>
             <p style="font-size: 0.9rem; color: #666; margin-bottom: 25px; font-weight: 500;">Momen indah yang selalu aku simpan rapi.<br>(Klik untuk membuka album memori)</p>
             
@@ -152,9 +156,9 @@
         </div>
     </div>
 
-    <!-- SLIDE 8: OUR LOVE JOURNEY (HALAMAN BARU KADO, MUSIC, WISH) -->
+    <!-- SLIDE 8: OUR LOVE JOURNEY -->
     <div id="journey-section" class="screen hidden">
-        <div class="glass-card scroll-box romantic-room-card" style="width: 95%; max-width: 550px;">
+        <div class="glass-card romantic-room-card" style="width: 95%; max-width: 550px;">
             <!-- Love Counter -->
             <div class="love-counter-wrapper" style="margin-bottom: 30px;">
                 <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #ff4081; margin-bottom: 5px;">Our Love Journey ⏳</h3>
@@ -171,30 +175,24 @@
             <div class="music-slider-container" style="margin-bottom: 30px;">
                 <div class="spotify-card">
                     <div class="vinyl-container">
-                        <div class="vinyl-disc">
-                            <img src="img/foto3.jpeg" alt="Cover Album"><div class="center-dot"></div>
-                        </div>
+                        <div class="vinyl-disc"><img src="img/foto3.jpeg" alt="Cover Album"><div class="center-dot"></div></div>
                     </div>
                     <div class="song-info">
-                        <h4>Lagu Favorit Dian 🎵</h4>
-                        <p class="song-title">Sesi Potret</p>
+                        <h4>Lagu Favorit Dian 🎵</h4><p class="song-title">Sesi Potret</p>
                         <audio id="audio-1" controls style="width: 100%; height: 35px; margin-top: 5px;"><source src="sesi potret.mp3" type="audio/mpeg"></audio>
                     </div>
                 </div>
                 <div class="spotify-card">
                     <div class="vinyl-container">
-                        <div class="vinyl-disc">
-                            <img src="img/foto2.jpeg" alt="Cover Album"><div class="center-dot"></div>
-                        </div>
+                        <div class="vinyl-disc"><img src="img/foto2.jpeg" alt="Cover Album"><div class="center-dot"></div></div>
                     </div>
                     <div class="song-info">
-                        <h4>Lagu Kebangsaan Kita 💫</h4>
-                        <p class="song-title">Everything You Are</p>
+                        <h4>Lagu Kebangsaan Kita 💫</h4><p class="song-title">Everything You Are</p>
                         <audio id="audio-2" controls style="width: 100%; height: 35px; margin-top: 5px;"><source src="everything-you-are.mp3" type="audio/mpeg"></audio>
                     </div>
                 </div>
             </div>
-            <p style="font-size: 0.75rem; color: #888; margin-top: 5px; font-weight: bold; margin-bottom: 20px;"><i class="fas fa-arrows-alt-h"></i> Geser untuk melihat lagu lain</p>
+            <p style="font-size: 0.75rem; color: #888; margin-top: -15px; font-weight: bold; margin-bottom: 20px;"><i class="fas fa-arrows-alt-h"></i> Geser untuk melihat lagu lain</p>
 
             <!-- Gift Selection -->
             <div style="margin-bottom: 30px; border-top: 1px dashed #ccc; padding-top: 20px;">
@@ -214,7 +212,7 @@
             <!-- Wish Box -->
             <div style="border-top: 1px dashed #ccc; padding-top: 20px;">
                 <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #ff4081; margin-bottom: 10px;"><i class="fas fa-birthday-cake"></i> Wish Terbesar Kamu?</h3>
-                <textarea id="wish-input" placeholder="Tulis harapan tulus Dian di sini... ❤️" rows="4" style="width: 100%; padding: 10px; border-radius: 10px; border: 2px solid rgba(255, 64, 129, 0.4); font-family: 'Poppins';"></textarea>
+                <textarea id="wish-input" placeholder="Tulis harapan tulus Dian di sini... ❤️" rows="3" style="width: 100%; padding: 10px; border-radius: 10px; border: 2px solid rgba(255, 64, 129, 0.4); font-family: 'Poppins';"></textarea>
                 <button id="submit-wish" class="pulse-btn" style="width: 100%; margin-top: 10px;"><i class="fas fa-paper-plane"></i> Simpan Harapan 🌸</button>
                 <div id="wish-success" class="hidden" style="margin-top: 15px; text-align: center;">
                     <i class="fas fa-check-circle" style="font-size: 2.5rem; color: #a3e635; margin-bottom: 10px;"></i>
