@@ -42,8 +42,8 @@ html, body {
 #quiz-section .glass-card, 
 #typewriter-section .glass-card, 
 #memories-section .glass-card {
-    height: 60vh; /* Memaksa kotak memanjang ke atas */
-    max-height: 60vh; 
+    height: 65vh; /* Memaksa kotak memanjang ke atas */
+    max-height: 65vh; 
     overflow-y: auto; 
     scrollbar-width: none; /* Menyembunyikan scrollbar di Firefox */
     -ms-overflow-style: none; /* Menyembunyikan scrollbar di IE/Edge */
@@ -196,8 +196,8 @@ html, body {
     #quiz-section .glass-card, 
     #typewriter-section .glass-card, 
     #memories-section .glass-card {
-        height: 60vh; 
-        max-height: 60vh; 
+        height: 65vh; 
+        max-height: 65vh; 
     }
     
     .top-row .v-polaroid { width: 95px !important; height: 110px !important; }
