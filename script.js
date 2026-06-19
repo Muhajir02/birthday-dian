@@ -1,5 +1,5 @@
 // ==========================================
-// URUTAN HALAMAN: Login(0) -> Prank(1) -> Countdown(2) -> Fireworks(3) -> Galaxy(4) -> Quiz(5) -> Surat(6) -> Memories(7) -> Journey(8)
+// URUTAN HALAMAN LENGKAP: Login(0)->Prank(1)->Countdown(2)->Fireworks(3)->Galaxy(4)->Quiz(5)->Surat(6)->Memories(7)->Journey(8)
 // ==========================================
 const slides = ["login-section", "prank-section", "countdown-section", "fireworks-section", "galaxy-section", "quiz-section", "typewriter-section", "memories-section", "journey-section"];
 let currentSlide = 0;
@@ -11,9 +11,9 @@ const navControls = document.getElementById("nav-controls");
 const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
 
-// ========================================================
+// ==========================================
 // FITUR HATI TERBANG SAAT DIKLIK
-// ========================================================
+// ==========================================
 document.addEventListener('click', function(e) {
     const targetTag = e.target.tagName.toLowerCase();
     if(targetTag === 'input' || targetTag === 'textarea' || targetTag === 'button' || e.target.closest('button')) return;
@@ -42,8 +42,8 @@ function updateNav() {
         // Sembunyikan Tombol Back di Halaman Prank (1)
         btnPrev.style.display = (currentSlide === 1) ? "none" : "flex";
         
-        // Sembunyikan Tombol Next di Prank(1), Countdown(2), Kembang Api(3), Quiz(5), Surat(6), dan Journey(8)
-        const hideNextOn = [1, 2, 3, 5, 6, 8];
+        // HILANGKAN TOMBOL NEXT DI: Prank(1), Countdown(2), Kembang Api(3), Quiz(5), Surat(6), Memories(7), Journey(8)
+        const hideNextOn = [1, 2, 3, 5, 6, 7, 8];
         btnNext.style.display = hideNextOn.includes(currentSlide) ? "none" : "flex";
     }
 }
@@ -108,7 +108,7 @@ function checkPassword() {
     } else { document.getElementById("error-msg").classList.remove("hidden"); }
 }
 
-// --- LOGIKA PRANK LARI-LARI ---
+// --- LOGIKA PRANK ---
 const btnNggakPrank = document.getElementById("btn-nggak-prank");
 const btnIyaPrank = document.getElementById("btn-iya-prank");
 if(btnNggakPrank && btnIyaPrank) {
@@ -123,7 +123,6 @@ if(btnNggakPrank && btnIyaPrank) {
         btnNggakPrank.style.left = Math.max(10, Math.floor(Math.random() * maxX)) + 'px';
         btnNggakPrank.style.top = Math.max(10, Math.floor(Math.random() * maxY)) + 'px';
     }
-
     btnIyaPrank.addEventListener("click", () => goToSlide(2));
 }
 
@@ -147,16 +146,16 @@ function updateUltahTimer() {
     document.getElementById("bday-minutes").innerText = String(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
     document.getElementById("bday-seconds").innerText = String(Math.floor((difference % (1000 * 60)) / 1000)).padStart(2, '0');
 }
-setInterval(updateUltahTimer, 1000);
-updateUltahTimer();
+setInterval(updateUltahTimer, 1000); updateUltahTimer();
 document.getElementById("btn-lanjut-countdown").addEventListener("click", () => goToSlide(3));
 
-// --- 2. KEMBANG API (ANTI LAG & WARNA BEDA-BEDA) ---
+// --- 2. KEMBANG API (ANTI LAG & WARNA PASTI BEDA) ---
 const fwCanvas = document.getElementById("fireworks-canvas"); const fwCtx = fwCanvas.getContext("2d", { alpha: false }); 
 const fwSection = document.getElementById("fireworks-section"); let fwRockets = [], fwParticles = [], fwStars = [];
 const wishes = ["HAPPY BIRTHDAY\nDIAN! 🎉", "WISH YOU ALL\nTHE BEST", "SUKACITA & CINTA", "SUKSES SELALU ✨", "SEMOGA IMPIANMU\nTERCAPAI 🌟", "I LOVE YOU! 💕"];
 let wishIndex = 0, lastTapTime = 0; 
-// 6 Warna Berbeda yang pasti di-assign 1 per 1 untuk setiap kata
+
+// Warna spesifik tiap kalimat (pasti berbeda urutannya)
 const rainbowColors = ['#ff4081', '#00e5ff', '#76ff03', '#ffff00', '#ea80fc', '#ff6a00'];
 
 const toGalaxyBtn = document.createElement("button"); toGalaxyBtn.innerHTML = "Lanjut Liat Semesta ✨"; toGalaxyBtn.className = "pulse-btn"; 
@@ -165,12 +164,16 @@ fwSection.appendChild(toGalaxyBtn); toGalaxyBtn.addEventListener("click", (e) =>
 
 fwSection.addEventListener("click", function(e) {
     if (Date.now() - lastTapTime < 100) return; lastTapTime = Date.now(); document.getElementById("tap-hint").style.display = "none";
-    fwRockets.push(new FwRocket(e.clientX, e.clientY, wishes[wishIndex % wishes.length], rainbowColors[wishIndex % rainbowColors.length])); 
+    
+    // Pilih warna berurutan dari array agar pasti berbeda
+    let assignedColor = rainbowColors[wishIndex % rainbowColors.length];
+    
+    fwRockets.push(new FwRocket(e.clientX, e.clientY, wishes[wishIndex % wishes.length], assignedColor)); 
     wishIndex++; if (wishIndex >= 5) toGalaxyBtn.style.display = "block";
 });
 
-// Mengurangi jumlah bintang belakang agar tidak lag di HP
-for (let i=0; i<60; i++) fwStars.push({ x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, s: Math.random()*2+1.5, alpha: Math.random(), speed: Math.random()*1.5+0.5 });
+// Bintang background dikurangi agar tidak lag
+for (let i=0; i<50; i++) fwStars.push({ x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, s: Math.random()*2+1.5, alpha: Math.random(), speed: Math.random()*1.5+0.5 });
 
 class FwRocket {
     constructor(tx, ty, text, color) { 
@@ -185,8 +188,8 @@ class FwRocket {
         fwCtx.beginPath(); fwCtx.moveTo(this.lastX, this.lastY); fwCtx.lineTo(this.x, this.y); fwCtx.strokeStyle = this.color; fwCtx.lineWidth = 4; fwCtx.lineCap = "round"; fwCtx.stroke();
         if (this.y <= this.ty && !this.exploded) { 
             this.exploded = true; 
-            // Mengurangi ledakan partikel agar lancar (dari 80 ke 40)
-            for(let i=0; i<40; i++) { fwParticles.push(new FwParticle(this.x, this.y, this.color)); } 
+            // Kurangi ledakan menjadi 30 partikel agar HP mulus
+            for(let i=0; i<30; i++) { fwParticles.push(new FwParticle(this.x, this.y, this.color)); } 
             showWishText(this.text, this.color, this.x, this.y); 
         }
     }
@@ -209,8 +212,8 @@ function startFireworks() {
         fwCtx.globalAlpha = 1; 
         for (let i = fwRockets.length-1; i>=0; i--) { if (fwRockets[i].exploded) fwRockets.splice(i, 1); else fwRockets[i].update(); } 
         for (let i = fwParticles.length-1; i>=0; i--) { if (fwParticles[i].alpha <= 0) fwParticles.splice(i, 1); else fwParticles[i].update(); } 
-        // Batasi maksimal partikel agar HP tidak panas/lag
-        if (fwParticles.length > 200) fwParticles.splice(0, fwParticles.length - 200); 
+        // Batasi memori array partikel 
+        if (fwParticles.length > 150) fwParticles.splice(0, fwParticles.length - 150); 
     } 
     animate();
 }
@@ -265,13 +268,23 @@ function startTypewriter() {
 }
 document.getElementById("btn-to-memories").addEventListener("click", () => goToSlide(7));
 
-// --- 7. LOGIKA ALBUM SLIDER MEMORIES ---
+// --- 7. LOGIKA ALBUM SLIDER MEMORIES (15 DATA FOTO, LOMPAT OTOMATIS) ---
 const memoryData = [
     { src: "img/video1.mp4", type: "video", title: "Momen Lucu", text: "Tingkah gemesmu yang satu ini selalu sukses bikin aku ketawa dan makin sayang." },
     { src: "img/foto2.jpeg", type: "image", title: "Bersamamu", text: "Setiap detik yang aku habiskan bersamamu adalah kenangan manis yang selalu aku simpan." },
     { src: "img/foto3.jpeg", type: "image", title: "Tawa & Canda", text: "Terima kasih ya sayang udah selalu mau berbagi cerita, tawa, dan hal-hal random sama aku." },
     { src: "img/foto4.jpeg", type: "image", title: "Tempat Nyaman", text: "Di dekatmu, aku selalu menemukan tempat paling aman dan nyaman untuk pulang." },
-    { src: "img/foto5.jpeg", type: "image", title: "Cinta Kamu", text: "Semoga kita terus sama-sama mengukir lebih banyak kenangan indah lainnya. I love you!" }
+    { src: "img/foto5.jpeg", type: "image", title: "Cinta Kamu", text: "Semoga kita terus sama-sama mengukir lebih banyak kenangan indah lainnya. I love you!" },
+    { src: "img/foto6.jpeg", type: "image", title: "Paling Gemes!", text: "Suka banget kalau liat kamu lagi pose lucu kayak gini, bener-bener gak pernah gagal bikin gemes!" },
+    { src: "img/foto7.jpeg", type: "image", title: "Bahagia Terus Ya", text: "Harapan aku di umurmu yang baru ini simpel: semoga kamu selalu dikelilingi kebahagiaan setiap harinya." },
+    { src: "img/foto8.jpeg", type: "image", title: "Masa Depan", text: "Mari kita lewati petualangan-petualangan seru dan hari-hari hebat di masa depan sama-sama lagi ya." },
+    { src: "img/foto9.jpeg", type: "image", title: "Selalu Ada", text: "Jangan pernah lupa kalau aku bakal selalu ada di sini, jadi orang pertama yang mendukung semua impianmu." },
+    { src: "img/foto10.jpeg", type: "image", title: "HBD Sayang 💕", text: "Selamat ulang tahun sekali lagi untuk Dian tersayang. I love you to the moon and back! 💖✨" },
+    { src: "img/foto11.jpeg", type: "image", title: "Satu Lagi ✨", text: "Terus penuhi memori HP kita sama-sama!" },
+    { src: "img/foto12.jpeg", type: "image", title: "Cantik Terus", text: "Kamu selalu kelihatan cantik di mataku, nggak peduli bagaimanapun." },
+    { src: "img/foto13.jpeg", type: "image", title: "Kenangan Kita", text: "Ini salah satu momen yang paling aku suka." },
+    { src: "img/foto14.jpeg", type: "image", title: "Jalan-Jalan", text: "Nanti kita jalan-jalan lagi ya buat bikin kenangan baru." },
+    { src: "img/foto15.jpeg", type: "image", title: "Last Memory", text: "Dan ini foto terakhir... siap untuk kejutan berikutnya? 🥰" }
 ];
 let currentMemoryIndex = 0; 
 function openMemory(index) { currentMemoryIndex = index; updateMemoryModal(); document.getElementById("memory-modal").classList.remove("hidden"); }
@@ -282,17 +295,30 @@ function updateMemoryModal() {
     else { vidEl.classList.add("hidden"); imgEl.classList.remove("hidden"); imgEl.src = data.src; }
     document.getElementById("memory-title").innerText = data.title; document.getElementById("memory-text").innerText = data.text; counterEl.innerText = (currentMemoryIndex + 1) + " / " + memoryData.length;
 }
-document.getElementById("prev-memory").addEventListener("click", () => { currentMemoryIndex--; if (currentMemoryIndex < 0) currentMemoryIndex = memoryData.length - 1; updateMemoryModal(); });
-document.getElementById("next-memory").addEventListener("click", () => { currentMemoryIndex++; if (currentMemoryIndex >= memoryData.length) currentMemoryIndex = 0; updateMemoryModal(); });
+document.getElementById("prev-memory").addEventListener("click", () => { 
+    currentMemoryIndex--; 
+    if (currentMemoryIndex < 0) currentMemoryIndex = memoryData.length - 1; 
+    updateMemoryModal(); 
+});
+document.getElementById("next-memory").addEventListener("click", () => { 
+    // OTOMATIS PINDAH KE JOURNEY SETELAH FOTO TERAKHIR
+    if (currentMemoryIndex >= memoryData.length - 1) {
+        document.getElementById("memory-modal").classList.add("hidden");
+        document.getElementById("memory-video").pause();
+        goToSlide(8); // Loncat ke Our Love Journey
+    } else {
+        currentMemoryIndex++; 
+        updateMemoryModal(); 
+    }
+});
 document.getElementById("close-memory").addEventListener("click", () => { document.getElementById("memory-modal").classList.add("hidden"); document.getElementById("memory-video").pause(); });
 
-document.getElementById("btn-to-journey").addEventListener("click", () => goToSlide(8)); // Lanjut Ke Halaman Terakhir
 
 // --- DEKORASI JATUH (Di Halaman Tertentu) ---
 function createFallingHearts() {
     setInterval(() => {
         // HANYA MUNCUL DI Prank(1), Countdown(2), Quiz(5), Surat(6), Memories(7), Journey(8)
-        // Kembang Api(3) dan Galaxy(4) DIJAMIN BERSIH
+        // Kembang Api(3) dan Galaxy(4) DIJAMIN BERSIH DARI GIF
         if (![1, 2, 5, 6, 7, 8].includes(currentSlide)) return;
         const heart = document.createElement("div"); heart.classList.add("heart"); 
         heart.innerHTML = ["❤️", "🌸", "✨", "⭐", "💕"][Math.floor(Math.random()*5)];
