@@ -13,24 +13,21 @@ html, body {
     color: #444; 
 }
 
-/* KOTAK KACA (Background) */
+/* KOTAK KACA: DI KUNCI UKURANNYA DAN DIBERI SCROLL INTERNAL */
 .glass-card { 
     background: rgba(254, 249, 195, 0.95); backdrop-filter: blur(10px); 
     border: 2px solid rgba(255, 255, 255, 0.9); border-radius: 20px; 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); text-align: center; 
-    margin: auto; padding: 2rem 1.5rem; position: relative; z-index: 10; width: 90%;
-}
-
-/* FITUR SCROLL INTERNAL AGAR SURAT & QUIZ RAPI DAN TIDAK TUMPAH */
-.scroll-box {
-    /* DIUBAH: Dibuat lebih pendek agar aman dari tombol back dan musik */
-    max-height: 65vh; 
-    overflow-y: auto;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE */
+    width: 90%; margin: 0; padding: 1.5rem 1rem; position: relative; z-index: 10; 
+    
+    /* INI SOLUSI UTAMA: Kotak dikunci maksimal tingginya agar 100% aman dari tombol Back & Musik */
+    max-height: calc(100vh - 160px); 
+    overflow-y: auto; 
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
     overscroll-behavior: contain; 
 }
-.scroll-box::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+.glass-card::-webkit-scrollbar { display: none; }
 
 .door { position: fixed; top: 0; width: 50%; height: 100%; background-color: var(--nailong-yellow); background-image: radial-gradient(rgba(255, 255, 255, 0.6) 3px, transparent 3px); background-size: 40px 40px; z-index: 15; transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1); box-shadow: 0 0 20px rgba(0,0,0,0.2); }
 .door::before { content: ''; position: absolute; top: 50%; width: 100%; height: 60px; transform: translateY(-50%); box-shadow: 0 4px 10px rgba(0,0,0,0.15); z-index: 1; background: linear-gradient(45deg, var(--accent-red) 35%, #fca5a5 50%, var(--accent-red) 65%) !important; background-size: 200% 200% !important; animation: ribbonShine 3s infinite linear !important; }
@@ -42,10 +39,9 @@ html, body {
 
 .screen { 
     position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; 
-    display: flex; flex-direction: column; align-items: center; justify-content: center; 
+    display: flex; flex-direction: column; align-items: center; justify-content: center; /* Kunci Flex Center Mutlak */
     transition: opacity 1s, visibility 1s; z-index: 10; overflow: hidden;
-    /* DIUBAH: Jarak atas-bawah layar agar kaca ada di tengah */
-    padding-top: 70px; padding-bottom: 90px; box-sizing: border-box;
+    padding: 0; margin: 0; /* Hapus Padding penyebab turun */
 }
 .screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; z-index: -1; }
 
@@ -106,7 +102,7 @@ html, body {
 .typewriter::after { content: '|'; animation: blinkCursor 0.7s infinite; color: #ff4081; font-weight: bold; }
 @keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* MEMORIES GRID */
+/* MEMORIES GRID (Menampilkan cuma 5 Foto di halaman depan) */
 .video-memories-grid { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; margin-top: 20px; padding-bottom: 25px; }
 .v-row { display: flex; justify-content: center; align-items: center; width: 100%; position: relative; flex-wrap: nowrap; }
 .top-row { gap: 20px; margin-bottom: 5px; z-index: 2; }
@@ -175,10 +171,6 @@ html, body {
 /* PENYESUAIAN HP (MOBILE RESPONSIVE) */
 @media (max-width: 500px) {
     .glass-card { width: 92%; padding: 1.5rem 1rem; }
-    
-    /* DIUBAH KHUSUS HP: Kotak scroll dipaksa maksimal 60% layar agar tombol aman */
-    .scroll-box { max-height: 60vh; }
-    
     .top-row .v-polaroid { width: 95px !important; height: 110px !important; }
     .bottom-row .v-polaroid { width: 70px !important; height: 80px !important; }
     .center-heart { width: 120px; height: 120px; }
