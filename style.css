@@ -13,6 +13,44 @@ html, body {
     color: #444; 
 }
 
+/* ========================================================
+   PERBAIKAN TINGGI KOTAK KACA (MENGIKUTI GARIS ORANYE)
+   ======================================================== */
+.screen { 
+    position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; 
+    display: flex; flex-direction: column; align-items: center; 
+    /* DIUBAH: Memaksa kotak menempel ke atas (tidak ngambang di tengah) */
+    justify-content: flex-start; 
+    /* DIUBAH: Jarak kotak dari atas layar, pas di bawah tombol musik */
+    padding-top: 85px; 
+    transition: opacity 1s, visibility 1s; z-index: 10; overflow: hidden;
+    box-sizing: border-box;
+}
+.screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; z-index: -1; }
+
+/* Khusus Login, Kembang Api, dan Galaxy tetap di tengah penuh */
+#login-section, #fireworks-section, #galaxy-section { justify-content: center; padding-top: 0; }
+
+.glass-card { 
+    background: rgba(254, 249, 195, 0.95); backdrop-filter: blur(10px); 
+    border: 2px solid rgba(255, 255, 255, 0.9); border-radius: 20px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); text-align: center; 
+    width: 90%; max-width: 550px; margin: 0 auto; padding: 2rem 1.5rem; position: relative; z-index: 10; 
+}
+
+/* FITUR SCROLL INTERNAL DENGAN UKURAN PASTI */
+.scroll-box {
+    /* DIUBAH: Tinggi dipaksa mengambil sisa layar dikurangi 170px untuk tombol Back */
+    height: calc(100vh - 170px) !important; 
+    max-height: calc(100vh - 170px) !important;
+    overflow-y: auto; 
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    overscroll-behavior: contain; 
+}
+.scroll-box::-webkit-scrollbar { display: none; }
+/* ======================================================== */
+
 .door { position: fixed; top: 0; width: 50%; height: 100%; background-color: var(--nailong-yellow); background-image: radial-gradient(rgba(255, 255, 255, 0.6) 3px, transparent 3px); background-size: 40px 40px; z-index: 15; transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1); box-shadow: 0 0 20px rgba(0,0,0,0.2); }
 .door::before { content: ''; position: absolute; top: 50%; width: 100%; height: 60px; transform: translateY(-50%); box-shadow: 0 4px 10px rgba(0,0,0,0.15); z-index: 1; background: linear-gradient(45deg, var(--accent-red) 35%, #fca5a5 50%, var(--accent-red) 65%) !important; background-size: 200% 200% !important; animation: ribbonShine 3s infinite linear !important; }
 #door-left::after { content: ''; position: absolute; right: 0; top: 0; width: 30px; height: 100%; box-shadow: -3px 0 10px rgba(0,0,0,0.1); z-index: 2; background: linear-gradient(45deg, var(--accent-red) 35%, #fca5a5 50%, var(--accent-red) 65%) !important; animation: ribbonShine 3s infinite linear !important; }
@@ -20,41 +58,6 @@ html, body {
 @keyframes ribbonShine { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 #door-left { left: 0; } #door-right { right: 0; }
 .door.open-left { transform: translateX(-100%); } .door.open-right { transform: translateX(100%); }
-
-.screen { 
-    position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; 
-    display: flex; flex-direction: column; align-items: center; justify-content: center; 
-    transition: opacity 1s, visibility 1s; z-index: 10; overflow: hidden;
-    padding-top: 50px; padding-bottom: 80px; box-sizing: border-box;
-}
-.screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; z-index: -1; }
-
-.glass-card { 
-    background: rgba(254, 249, 195, 0.95); backdrop-filter: blur(10px); 
-    border: 2px solid rgba(255, 255, 255, 0.9); border-radius: 20px; 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); text-align: center; 
-    margin: auto; padding: 2rem 1.5rem; position: relative; z-index: 10; width: 90%;
-}
-
-/* ========================================================
-   MEMAKSA KOTAK QUIZ & SURAT MENJADI BESAR DAN MEMANJANG KE ATAS
-   ======================================================== */
-#quiz-section .glass-card, 
-#typewriter-section .glass-card, 
-#memories-section .glass-card {
-    height: 80vh; /* Memaksa kotak memanjang ke atas */
-    max-height: 80vh; 
-    overflow-y: auto; 
-    scrollbar-width: none; /* Menyembunyikan scrollbar di Firefox */
-    -ms-overflow-style: none; /* Menyembunyikan scrollbar di IE/Edge */
-    overscroll-behavior: contain; 
-}
-#quiz-section .glass-card::-webkit-scrollbar, 
-#typewriter-section .glass-card::-webkit-scrollbar, 
-#memories-section .glass-card::-webkit-scrollbar { 
-    display: none; /* Menyembunyikan scrollbar di Chrome/Safari */
-}
-/* ======================================================== */
 
 .login-box { max-width: 450px; animation: floatingCard 3s ease-in-out infinite; }
 @keyframes floatingCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -68,7 +71,6 @@ html, body {
 .login-box p { color: #666; font-size: 0.95rem; margin-bottom: 25px; }
 .login-box input, .quiz-box input, .wish-box textarea { width: 100%; padding: 14px; margin: 0 0 15px 0; border: 2px solid rgba(251, 191, 36, 0.5); border-radius: 10px; text-align: center; font-size: 1rem; outline: none; background: rgba(255,255,255,0.6); transition: 0.3s; }
 .login-box input:focus, .quiz-box input:focus, .wish-box textarea:focus { border-color: var(--dark-orange); background: white; }
-.wish-box textarea { text-align: left; resize: none; border-color: rgba(255, 64, 129, 0.4); }
 
 .pulse-btn { background: var(--dark-orange); color: white; border: none; padding: 12px 24px; border-radius: 30px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: 0.3s; box-shadow: 0 0 15px rgba(251, 191, 36, 0.5); display: inline-flex; align-items: center; gap: 8px; justify-content: center;}
 .pulse-btn:hover { background: #B45309; transform: scale(1.05); }
@@ -83,7 +85,6 @@ html, body {
 @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
 /* FIREWORKS */
-#fireworks-section { background: radial-gradient(circle at bottom, #1b2735 0%, #090a0f 100%); z-index: 5; padding: 0; }
 #fireworks-canvas { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; display: block;}
 #tap-hint { position: absolute; top: 15%; width: 100%; text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 1.2rem; z-index: 5; animation: blinkHint 1.5s infinite; pointer-events: none; }
 @keyframes blinkHint { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
@@ -92,7 +93,6 @@ html, body {
 @keyframes burstText { 0% { transform: translate(-50%, -50%) scale(0); opacity: 0; } 15% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; } 80% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; } }
 
 /* GALAXY */
-#galaxy-section { background: var(--galaxy-bg); z-index: 6; justify-content: center; padding:0;}
 #galaxy-canvas { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none;}
 .center-heart { position: absolute; top: 50%; left: 50%; width: 180px; height: 180px; z-index: 50; pointer-events: none; transform: translate(-50%, -50%) scale(0); opacity: 0; transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 1.5s; }
 .center-heart.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
@@ -131,12 +131,6 @@ html, body {
 .row-2 .v-polaroid:nth-child(2) { transform: rotate(2deg) translateY(-3px); }
 .row-2 .v-polaroid:nth-child(3) { transform: rotate(-5deg) translateY(6px); }
 .v-polaroid:hover { transform: scale(1.6) rotate(0deg) !important; z-index: 50 !important; box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
-
-/* WISH BOX SUCCESS */
-#wish-success { text-align: center; color: #444; animation: zoomInPopup 0.5s forwards; padding-top: 20px; }
-@keyframes zoomInPopup { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-#wish-success h4 { color: #84cc16; font-size: 1.3rem; margin-bottom: 5px;}
-#wish-success p { font-size: 0.95rem; font-weight: 500;}
 
 /* MODALS */
 #popup-modal, #memory-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 0.3s; padding: 20px; box-sizing: border-box;}
@@ -188,18 +182,9 @@ html, body {
 
 #music-toggle { position: fixed; top: 15px; right: 15px; z-index: 1000; width: 45px; height: 45px; border-radius: 50%; font-size: 1rem; pointer-events: auto;}
 
-/* PENYESUAIAN HP (MOBILE RESPONSIVE) */
+/* PENYESUAIAN HP */
 @media (max-width: 500px) {
     .glass-card { width: 92%; padding: 1.5rem 1rem; }
-    
-    /* DIUBAH: Memaksa tinggi kotak menjadi 82% layar HP, menutup gap kosong di atas */
-    #quiz-section .glass-card, 
-    #typewriter-section .glass-card, 
-    #memories-section .glass-card {
-        height: 80vh; 
-        max-height: 80vh; 
-    }
-    
     .top-row .v-polaroid { width: 95px !important; height: 110px !important; }
     .bottom-row .v-polaroid { width: 70px !important; height: 80px !important; }
     .center-heart { width: 120px; height: 120px; }
